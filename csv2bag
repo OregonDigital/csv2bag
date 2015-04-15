@@ -1,0 +1,314 @@
+#!/usr/bin/env ruby
+
+require 'linkeddata'
+require 'yaml'
+require 'bagit'
+require 'logger'
+require 'docopt'
+require './mapping_methods.rb'
+require_relative 'lib/desc_parser'
+require 'csv'
+
+include MappingMethods
+
+doc = <<DOCOPT
+CSV to BagIt
+
+Consumes a .csv file of collections and converts them into bags.
+
+Usage:
+  #{__FILE__} [--skip] [--map-file=<file>] [--image-file=<file>] [--image-file-path=<dir>] DIR [TARGET]
+  #{__FILE__} -h | --version
+
+Options:
+  -s --skip                 Skip missing fields.
+  -m --map-file=<file>      Mapping file. [default: mapping.yml]
+  -h --help                 Show this help screen.
+  -v --version              Show version.
+  --image-file=<file>       CSV format file containing mapping from one image file to another in the format old,new
+  --image-file-path=<dir>   Path where the full size images are located.
+
+DOCOPT
+
+def create_graphs(file, collection)
+
+  graphs = []
+
+  # Load the CSV file and separate the header (row 1) and mapping (row 2) from the items (rows > 2)
+  csv_data = CSV.read(file)
+  # heading = csv_data[0]
+  mapping = csv_data[1]
+  items = csv_data.slice(2, csv_data.count)
+
+  items.each do |record|
+    # record is an individual line from the csv file
+    graph = RDF::Graph.new
+    bnode = RDF::Node.new
+    record_id = nil
+    mapping.each_with_index do |tag, idx|
+      begin
+        item_val = record[idx]
+        if tag.to_s.include? 'method' and not (item_val == nil or item_val == '')
+          method_name = tag.to_s.split(':').last
+          if 'REPLACE' == method_name.upcase
+            record_id = item_val
+            graph << RDF::Statement(bnode, RDF::DC.replaces, RDF::URI("http://oregondigital.org/u?/#{collection},#{record_id}"))
+          else
+            result = send(method_name.to_sym, bnode, item_val) unless @skip.include? item_val.downcase
+            graph << result unless result.nil?
+          end
+        else
+          next if tag.to_s.upcase == 'SKIP' or (item_val == nil or item_val == '')
+          ns, term = tag.to_s.split(':')
+          graph << RDF::Statement.new(bnode, @namespaces[ns][term], item_val) unless @skip.include? item_val.downcase
+        end
+      rescue NoMethodError
+        @missing_fields << tag unless @missing_fields.include? tag
+      end
+    end
+
+    add_set(collection, graph, bnode)
+    send("#{collection}_cleanup", collection, graph, bnode) if respond_to?("#{collection}_cleanup")
+    graphs << set_subject(graph, RDF::URI("http://example.org/ns/#{record_id}"), bnode) unless graph.empty?
+  end
+  graphs
+end
+
+def add_set(collection, graph, subject)
+  set = map_set[collection.downcase]
+  if set
+    graph << RDF::Statement(subject, @namespaces["oregon"]["set"], RDF::URI("http://oregondigital.org/resource/oregondigital:#{set}"))
+  end
+end
+
+def map_set
+  {
+      "oe_explorer" => "oregon-explorer",
+      "siuslaw" => "siuslaw",
+      "rockshore93" => "rockyshore93",
+      "baseball" => "osu-baseball",
+      "gifford" => "gifford",
+      "fairbanks" => "fairbanks",
+      'lchsa' => 'lchsa',
+      'gwilliams' => 'gwilliams',
+      'herbarium' => 'herbarium',
+      'streamsurve' => 'streamsurvey',
+      'mewater' => 'mewater',
+  }
+end
+
+def set_subject(graph, new_subject, old_subject)
+  list_items = []
+  graph.each_statement do |statement|
+    graph.delete(statement)
+    # Separate any list statements so they appear at the end.
+    if statement.subject.node?
+      if old_subject == statement.subject
+        graph << RDF::Statement.new(new_subject, statement.predicate, statement.object)
+      else
+        list_items << statement
+      end
+    end
+  end
+  # Add any list items to the end of the graph.
+  list_items.each { |statement| graph << statement }
+  graph
+end
+
+def write_desc_metadata(graph, bag)
+  RDF::Writer.open("descMetadata.nt", :format => :ntriples) do |writer|
+    writer << graph
+  end
+  bag.add_tag_file('descMetadata.nt', 'descMetadata.nt')
+end
+
+def add_content_file(graph, bag, dir, subject)
+
+  begin
+    # Get the replaces statement for this graph so we can refer to it later.
+    replaces_stmt = graph.query([subject, RDF::DC.replaces, nil])
+    replaces_uri = replaces_stmt.first ? replaces_stmt.first.object : nil
+
+    query = RDF::Query.new do
+      pattern [subject, RDF::URI('http://opaquenamespace.org/ns/full'), :full]
+    end
+    results = query.execute(graph)
+    if results.empty?
+      @log.warn("No FULL found for #{replaces_uri}")
+      return nil
+    end
+    fname = Pathname(results.first[:full].to_s).basename.to_s unless fname
+    fname = fname.split(/\\/).last
+
+    # Override the image dir if one is passed in on the command line along with a mapping file.
+    dir = @image_file_path if @image_file_path
+    # Use the supplied filename unless it is in the image map (if one was passed in on the command line).
+    fname = fname.to_s.split('\\')[-1].gsub(/^1_/, '') unless (@image_file_map and @image_file_map.has_value?(File.basename(fname, '.*')))
+    file = File.join(dir, '', fname)
+    require 'find'
+    Find.find(dir) do |path|
+      if File.basename(path) == fname
+        file = path
+        break
+      end
+    end
+    fulljpg_stmt = graph.query([subject, @namespaces['oregon']['fullJpg'], nil])
+    if File.exist? file
+      bag.add_file("content.#{Pathname(file).basename.to_s.split('.').last}", file)
+    else
+      @log.warn("#{fname} :: No file found for #{replaces_uri}. Searching for JPG...")
+      jpg_found = false
+      # Try the fullJpg if it's present.  JPGs will be in /metadata/jpg folder.
+      unless fulljpg_stmt.first.nil?
+        fulljpg = fulljpg_stmt.first.object.to_s
+        jpg_file = File.join(dir, 'jpg', fulljpg)
+        if File.exist? jpg_file
+          puts "FOUND #{jpg_file}"
+          bag.add_file("content.#{Pathname(jpg_file).basename.to_s.split('.').last}", jpg_file)
+          jpg_found = true
+        end
+      end
+      @log.warn("#{jpg_file} :: No file found for #{replaces_uri}") unless jpg_found
+    end
+    graph.delete(fulljpg_stmt)
+  rescue Errno::ENOENT => e
+    @log.warn("#{fname} :: No file found for #{replaces_uri}.")
+  end
+end
+
+def make_bag(dir, graph, subject, source_dir)
+  folder = "%05d" % @folder_id.to_s
+  @folder_id += 1
+  bag = BagIt::Bag.new(File.join(dir, folder))
+  add_content_file(graph, bag, source_dir, subject)
+  write_desc_metadata(graph, bag)
+  bag.tagmanifest!
+  bag.manifest!
+end
+
+def make_coll_bags(dir, target, collection, *args)
+
+  file = File.join(dir, collection, "#{collection}.csv")
+  coll_name = File.basename(collection, '.*')
+  col_dir = FileUtils.mkdir_p(File.join(target, coll_name))
+  graphs = create_graphs(file, coll_name)
+
+  if @missing_fields.empty? or @opts['--skip']
+    puts 'making bags'
+    graphs.each do |graph|
+      subject = ''
+      graph.each_statement do |s|
+        if s.subject.to_s.start_with? 'http://example.org/ns/'
+          subject = s.subject
+          break
+        end
+      end
+      make_bag(col_dir, graph, subject, File.join(dir, collection))
+    end
+  else
+    puts "Missing fields, not writing bags for #{collection}. Add fields to mapping.yml, or use --skip flag."
+  end
+  # graphs.each { |gr| gr.each { |x| puts x.inspect } }
+end
+
+def make_all_bags(dir, target)
+  target = FileUtils.mkdir_p(target)
+  Dir.foreach(dir) do |collection|
+    next if collection.start_with?('.')
+    make_coll_bags(dir, target, collection)
+
+    # Use these next methods to clean up collections that are missing items, otherwise safe to comment out.
+    # list_missing_image_items(target, collection)
+    # move_bags_missing_images(target, collection)
+  end
+end
+
+def get_bags_missing_images(target, collection)
+  # Hack to create a list of bags that are missing images.
+  missing_dirs = []
+  Dir.foreach(File.join(target, collection)) do |item|
+    unless item.start_with?('.') or 'missing' == item
+      data_dir = File.join(target, collection, item, 'data')
+      found = false
+      Dir.foreach(data_dir) do |subitem|
+        found = true unless subitem.start_with?('.')
+      end
+      unless found
+        # No data so make sure it's not compound
+        metadata = File.join(target, collection, item, 'descMetadata.nt')
+        is_compound = false
+        File.readlines(metadata).each do |line|
+          if line.include? 'http://opaquenamespace.org/ns/contents'
+            is_compound = true
+            break
+          end
+        end
+        missing_dirs << item unless is_compound
+      end
+    end
+  end
+  missing_dirs
+end
+
+def list_missing_image_items(target, collection)
+  # Creates a list of the "replaces" URLs of the items whose bags are missing contents.
+  missing_items = []
+  missing_dirs = get_bags_missing_images(target, collection)
+  missing_dirs.each do |item|
+    replaces = ''
+    metadata = File.join(target, collection, item, 'descMetadata.nt')
+    File.readlines(metadata).each do |line|
+      replaces = line if line.include? 'http://purl.org/dc/terms/replaces'
+      break if line.include? 'http://opaquenamespace.org/ns/contents' # Break before it sees child "replaces" items in complex objects.
+    end
+    if '' == replaces
+      @log.warn("No replaces found in #{item}")
+    else
+      part = replaces.split(' ')[2].strip
+      missing_items << part[1, (part.length - 2)]
+    end
+  end
+  missing_items
+end
+
+def move_bags_missing_images(target, collection)
+  # Hack to go through and pull out the bags that are missing images and put them in a separate folder for special handling.
+  missing_dirs = get_bags_missing_images(target, collection)
+  if missing_dirs.count > 0
+    @log.warn("Moving #{missing_dirs.count} missing bags")
+    missing = FileUtils.mkdir_p(File.join(target, collection, 'missing'))
+    missing_dirs.each do |item|
+      source = File.join(target, collection, item)
+      dest = File.join(missing, item)
+      FileUtils.move(source, dest)
+    end
+  end
+  missing_dirs
+end
+
+begin
+  @opts = Docopt::docopt(doc, version: 'csv2bag 0.0.1')
+  @folder_id = 1
+
+  @missing_fields = []
+  @mappings = YAML.load_file(@opts['--map-file'])
+  @image_file_path = @opts['--image-file-path'] if @opts['--image-file-path']
+
+  # If there is an image file present, split it into k->v pairs for filename lookup.
+  if @opts['--image-file']
+    list = {}
+    params = {:headers => true, :return_headers => true, :header_converters => :symbol, :converters => :all}
+    CSV.read(@opts['--image-file'], params).each { |row| list[row.fields[0]] = row.fields[1] }
+    @image_file_map = list
+  end
+  @namespaces = {}
+  @mappings['namespaces'].each do |ns, base_uri|
+    @namespaces[ns] = RDF::Vocabulary.new(base_uri)
+  end
+  @skip = ['unknown', 'n/a']
+  @log = Logger.new('logfile.log')
+  make_all_bags(@opts['DIR'], @opts['TARGET'] || 'bags')
+  puts @missing_fields unless @missing_fields.empty?
+rescue Docopt::Exit => e
+  puts e.message
+end
