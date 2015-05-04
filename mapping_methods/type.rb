@@ -39,7 +39,8 @@ module MappingMethods
 
     def map_types
       {
-        'Moving image' => 'MovingImage'
+        'Moving image' => 'MovingImage',
+        'image/tiff' => 'Image',
       }
     end
   end

@@ -23,11 +23,11 @@ module MappingMethods
 
     def siuslaw_rights(subject, data)
       graph = RDF::Graph.new << RDF::Statement(subject, RDF::URI('http://purl.org/dc/terms/rights'), RDF::URI('http://www.europeana.eu/rights/rr-r/'))
-      if data.include? 'Siuslaw National Forest'
-        graph << RDF::Statement(subject, RDF::URI('http://opaquenamespace.org/rights/rightsHolder'), 'Siuslaw National Forest')
-      elsif data.include? 'Cronk'
+      # if data.include? 'Siuslaw National Forest'
+      #   graph << RDF::Statement(subject, RDF::URI('http://opaquenamespace.org/rights/rightsHolder'), 'Siuslaw National Forest')
+      # elsif data.include? 'Cronk'
         graph << RDF::Statement(subject, RDF::URI('http://opaquenamespace.org/rights/rightsHolder'), 'Cronk Family')
-      end
+      # end
       graph
     end
 
