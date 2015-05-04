@@ -69,7 +69,11 @@ module MappingMethods
         "Mapleton" => "Mapleton, OR",
         "Waldpot" => "Waldport",
         "Hebo?" => "Hebo, OR Place",
-        "Hebo" => "Hebo, OR Place"
+        "Hebo" => "Hebo, OR Place",
+        'Scenic landscape' => 'Landscapes',
+        'Silviculture' => 'Forests and forestry',
+        'Lumber industry' => 'Lumber trade',
+        'Homesteading' => 'Frontier and pioneer life',
       }
     end
 

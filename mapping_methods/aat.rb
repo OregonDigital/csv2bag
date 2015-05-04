@@ -64,6 +64,8 @@ module MappingMethods
         uri += "300123430"
       elsif data == "Postcard"
         uri += "300026816"
+      elsif data == "Text"
+        uri += '300263751'
       end
       r << RDF::Statement.new(subject, RDF.type, RDF::URI(uri))
     end
@@ -71,7 +73,7 @@ module MappingMethods
     def aat_siuslaw_colorcontent(subject, data)
       r = RDF::Graph.new
       uri = 'http://vocab.getty.edu/aat/'
-      if data == "B/W" || data == "black and white" || "Black&white" == data || "Black & white" == data
+      if data == "BW" || data == "B/W" || data == "black and white" || "Black&white" == data || "Black & white" == data
         uri += "300265434"
       elsif data == "Color"
         uri += "300056130"

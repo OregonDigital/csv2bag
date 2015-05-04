@@ -218,8 +218,8 @@ def make_all_bags(dir, target)
     make_coll_bags(dir, target, collection)
 
     # Use these next methods to clean up collections that are missing items, otherwise safe to comment out.
-    # list_missing_image_items(target, collection)
-    # move_bags_missing_images(target, collection)
+    list_missing_image_items(target, collection)
+    move_bags_missing_images(target, collection)
   end
 end
 
