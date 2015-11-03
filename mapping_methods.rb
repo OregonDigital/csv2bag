@@ -16,7 +16,6 @@ module MappingMethods
   include MappingMethods::Lcsh
   include MappingMethods::Institution
   include MappingMethods::Sports
-  include MappingMethods::Baseball
   include MappingMethods::Cleanup
   include MappingMethods::Creator
 
