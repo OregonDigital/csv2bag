@@ -28,55 +28,6 @@ module MappingMethods
       geographic(subject, data, RDF::Vocab::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
     end
 
-    def ranger_district(subject, data)
-      return if data == ""
-      graph = RDF::Graph.new
-      Array(data.split("/")).each do |district|
-        uri = ranger_district_mapping[district]
-        graph << RDF::Statement.new(subject, RDF::URI("http://opaquenamespace.org/ns/rangerDistrict"), RDF::URI(uri)) if uri
-      end
-      graph
-    end
-
-    def ranger_district_mapping
-      {
-        "Waldport" => "http://sws.geonames.org/5758901",
-        "Waldpot" => "http://sws.geonames.org/5758901",
-        "Alsea" => "http://sws.geonames.org/5711134",
-        "ODNRA" => "http://www.geonames.org/5744262",
-        "Smith River" => "http://www.geonames.org/5752710",
-        "Mapleton" => "http://www.geonames.org/9406413",
-        "Hebo?" => "http://www.geonames.org/7310461",
-        "Hebo" => "http://www.geonames.org/7310461"
-      }
-    end
-
-    def siuslaw_geographic(subject, data)
-      graph = RDF::Graph.new
-      return graph if data == "" || data.nil?
-      Array(data.split("/")).each do |str|
-        str = siuslaw_mapping[str] || str
-        graph << geographic(subject, str, RDF::Vocab::DC[:spatial], {:countryBias => "US", :name_startsWith => str, :orderBy => 'relevance'})
-      end
-      return graph
-    end
-
-    def siuslaw_mapping
-      {
-        "Alsea" => "Alsea Place",
-        "ODNRA" => "Oregon Dunes National Recreation Area",
-        "Smith River" => "Smith River, Oregon",
-        "Mapleton" => "Mapleton, OR",
-        "Waldpot" => "Waldport",
-        "Hebo?" => "Hebo, OR Place",
-        "Hebo" => "Hebo, OR Place",
-        'Scenic landscape' => 'Landscapes',
-        'Silviculture' => 'Forests and forestry',
-        'Lumber industry' => 'Lumber trade',
-        'Homesteading' => 'Frontier and pioneer life',
-      }
-    end
-
     def geographic(subject, data, predicate=RDF::Vocab::DC[:spatial], extra_params={})
       data.slice!(';')
       data.strip!
