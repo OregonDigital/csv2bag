@@ -4,6 +4,7 @@ require 'linkeddata'
 require 'yaml'
 require 'bagit'
 require 'logger'
+require 'logging'
 require 'docopt'
 require './mapping_methods.rb'
 require_relative 'lib/desc_parser'
@@ -290,6 +291,16 @@ begin
   @opts = Docopt::docopt(doc, version: 'csv2bag 0.0.1')
   @folder_id = 1
 
+  @log = Logging.logger[STDOUT]
+  @log.level = :warn
+
+  @log.add_appenders \
+      Logging.appenders.stdout(:layout => Logging.layouts.pattern(
+        :pattern => '[%d] %-5l : %m\n',
+        :color_scheme => 'default')),
+      Logging.appenders.file('logfile.log', :level => :warn, :layout => Logging.layouts.pattern(
+        :pattern => '[%d] %-5l : %m\n'))
+
   @missing_fields = []
   @mappings = YAML.load_file(@opts['--map-file'])
   @image_file_path = @opts['--image-file-path'] if @opts['--image-file-path']
@@ -306,9 +317,11 @@ begin
     @namespaces[ns] = RDF::Vocabulary.new(base_uri)
   end
   @skip = ['unknown', 'n/a']
-  @log = Logger.new('logfile.log')
+
   make_all_bags(@opts['DIR'], @opts['TARGET'] || 'bags')
+
   puts @missing_fields unless @missing_fields.empty?
+
 rescue Docopt::Exit => e
   puts e.message
 end
