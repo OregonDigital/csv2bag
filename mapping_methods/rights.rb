@@ -42,19 +42,21 @@ module MappingMethods
           rightsURI << odlicense[:uri] if RDF::URI(data) == odlicense[:uri]
         end
 
-        if rightsURI.to_s.empty? then puts "Rights URI does not match any acceptable licenses: " + data end
+        if rightsURI.to_s.empty? then @log.error("Rights URI does not match any acceptable licenses: " + data) end
       else
         # Check if text matches allowed license title
         ODLICENSES.each do |odlicense|
           rightsURI << odlicense[:uri] if data == odlicense[:title]
         end
 
-        if rightsURI.to_s.empty? then puts "Rights text does not match any acceptable licenses: " + data end
+        if rightsURI.to_s.empty? then @log.error("Rights text does not match any acceptable licenses: " + data) end
       end
 
       if !rightsURI.to_s.empty?
         graph << RDF::Statement(subject, RDF::URI('http://purl.org/dc/terms/rights'), rightsURI)
       end
+
+      @log.info("Rights URI = " + rightsURI)
 
       graph
     end

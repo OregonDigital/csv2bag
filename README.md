@@ -40,6 +40,7 @@ The CSV file should be named **name_of_my_collection.csv** and located in the **
 #### Optional Parameters
 * Source image files can be stored in a location other than the metadata/COLLECTION folder, and the new path can be referenced with the command line parameter **--image-file-path**
 * Source image files can be mapped to a different file name using a CSV file specified in the command line parameter **--image-file**.  The CSV file must have the columns in the format of old_file,new_file and have no heading.  The file is read in and a hash of old->new can then be used in the cleanup task to convert from the old filename to the new one.
+* Different log levels for console output can be specified in the command line parameter **--console-level-log**. Default is 'warn'. Logfile output is not affected.
 
 #### Contributing
 * Use [Oregon Digital Git best practices](https://github.com/OregonDigital/Dev-Standards) and make changes / additions on a branch, commit with helpful commit message, then submit a Pull Request.
