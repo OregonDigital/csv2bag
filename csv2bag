@@ -18,16 +18,17 @@ CSV to BagIt
 Consumes a .csv file of collections and converts them into bags.
 
 Usage:
-  #{__FILE__} [--skip] [--map-file=<file>] [--image-file=<file>] [--image-file-path=<dir>] DIR [TARGET]
+  #{__FILE__} [--skip] [--map-file=<file>] [--image-file=<file>] [--image-file-path=<dir>] [--console-log-level=<level>] DIR [TARGET]
   #{__FILE__} -h | --version
 
 Options:
-  -s --skip                 Skip missing fields.
-  -m --map-file=<file>      Mapping file. [default: mapping.yml]
-  -h --help                 Show this help screen.
-  -v --version              Show version.
-  --image-file=<file>       CSV format file containing mapping from one image file to another in the format old,new
-  --image-file-path=<dir>   Path where the full size images are located.
+  -s --skip                       Skip missing fields.
+  -m --map-file=<file>            Mapping file. [default: mapping.yml]
+  -c --console-log-level=<level>  Log level for display to console. [default: 'warn'] [error / warn / info / debug]
+  -h --help                       Show this help screen.
+  -v --version                    Show version.
+  --image-file=<file>             CSV format file containing mapping from one image file to another in the format old,new
+  --image-file-path=<dir>         Path where the full size images are located.
 
 DOCOPT
 
@@ -292,7 +293,7 @@ begin
   @folder_id = 1
 
   @log = Logging.logger[STDOUT]
-  @log.level = :warn
+  @log.level = @opts['--console-log-level'] || :warn
 
   @log.add_appenders \
       Logging.appenders.stdout(:layout => Logging.layouts.pattern(
