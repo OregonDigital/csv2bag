@@ -53,7 +53,7 @@ module MappingMethods
       end
 
       if !rightsURI.to_s.empty?
-        graph << RDF::Statement(subject, RDF::URI('http://purl.org/dc/terms/rights'), rightsURI)
+        graph << RDF::Statement(subject, RDF::Vocab::DC.rights, rightsURI)
       end
 
       @log.info("Rights URI = " + rightsURI)

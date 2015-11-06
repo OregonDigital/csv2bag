@@ -32,7 +32,7 @@ module MappingMethods
       data = data.gsub(';','')
       collection = data
       puts "No URI found for #{data}" unless collection.kind_of? RDF::URI
-      graph = RDF::Graph.new << RDF::Statement.new(subject, RDF::DC.isPartOf, collection)
+      graph = RDF::Graph.new << RDF::Statement.new(subject, RDF::Vocab::DC.isPartOf, collection)
       graph
     end
   end

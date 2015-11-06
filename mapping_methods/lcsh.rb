@@ -21,10 +21,10 @@ module MappingMethods
         uri ||= ""
         if !uri.nil? && uri != "" 
           parsed_uri = uri["id"].gsub("info:lc", "http://id.loc.gov")
-          graph << RDF::Statement.new(subject, RDF::DC.subject, RDF::URI(parsed_uri))
+          graph << RDF::Statement.new(subject, RDF::Vocab::DC.subject, RDF::URI(parsed_uri))
         else
           puts "No subject heading found for #{subject_name}" unless @lcsubject_cache.include?(subject_name.downcase)
-          graph << RDF::Statement.new(subject, RDF::DC11.subject, subject_name)
+          graph << RDF::Statement.new(subject, RDF::Vocab::DC11.subject, subject_name)
         end
         @lcsubject_cache[subject_name.downcase] ||= uri
       end

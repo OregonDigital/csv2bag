@@ -28,7 +28,7 @@ module MappingMethods
           q.execute(language_cache[iso_lang.first]).each do |solution|
             if solution[:prefLabel].language == :en
               graph << RDF::Statement.new(solution[:lang], RDF::SKOS.prefLabel, solution[:prefLabel])
-              graph << RDF::Statement.new(subject, RDF::DC.language, solution[:lang])
+              graph << RDF::Statement.new(subject, RDF::Vocab::DC.language, solution[:lang])
             end
           end
         else
