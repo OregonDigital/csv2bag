@@ -11,11 +11,11 @@ module MappingMethods
 
       if (year = /^(\d{4})$/.match(human_date))
         # Matches a 4-digit year: 1950.
-        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date), year[1]) # YYYY
+        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date), year[1]) # YYYY
 
       elsif (season = /^(circa|ca|summer|winter|fall|spring|early|late)(\.|,)*\s*(\d{4})$/i.match(human_date))
         # Matches Circa/season year: Spring 1930.
-        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date), season[3]) # YYYY
+        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date), season[3]) # YYYY
 
       elsif (year_range = /^(\d{4})'*s$/.match(human_date))
         # Matches a 4-digit year with "s" or "'s": 1940s or 1940's.
@@ -44,13 +44,13 @@ module MappingMethods
 
       elsif (year_desc = /^(\d{4})\s+(\D*)$/.match(human_date))
         # Matches YEAR ... Description: 1941                                   Newport, OR Bayfront
-        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date), year_desc[1]) # YYYY
+        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date), year_desc[1]) # YYYY
         # Special case: since some dates had additional descriptive material, a dct:description field is returned as well.
-        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.description), year_desc[2]) # Description
+        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.description), year_desc[2]) # Description
 
       elsif (mdy = /(\d{2})\/(\d{2})\/(\d{2})/.match(human_date))
         # Matches 05/12/45: 1954-05-12.
-        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date), "19#{mdy[3]}-#{mdy[1]}-#{mdy[2]}") # YYYY-MM-DD
+        statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date), "19#{mdy[3]}-#{mdy[1]}-#{mdy[2]}") # YYYY-MM-DD
 
       else
         begin
@@ -58,22 +58,22 @@ module MappingMethods
           if /\D+(\d+),\s(\d{4})/.match(human_date)
             # Matches: July 4, 1963.
             d = Date.strptime(human_date, '%B %d, %Y')
-            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date),  d.strftime('%Y-%m-%d')) # YYYY-MM
+            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date),  d.strftime('%Y-%m-%d')) # YYYY-MM
 
           elsif /(\d+)\s\w+,\s*(\d{4})/.match(human_date)
             # Matches: 31 July, 1963.
             d = Date.strptime(human_date, '%d %B, %Y')
-            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date),  d.strftime('%Y-%m-%d')) # YYYY-MM
+            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date),  d.strftime('%Y-%m-%d')) # YYYY-MM
 
           elsif /\w+,\s*\d{4}/.match(human_date)
             # Matches: Month, Year.
             d = Date.strptime(human_date,'%B, %Y')
-            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date),  d.strftime('%Y-%m')) # YYYY-MM
+            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date),  d.strftime('%Y-%m')) # YYYY-MM
 
           elsif /\w+\s*\d{4}/.match(human_date)
             # Matches: Month Year.
             d = Date.strptime(human_date,'%B %Y')
-            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::DC.date),  d.strftime('%Y-%m')) # YYYY-MM
+            statements << RDF::Statement.new(subject, RDF::URI.new(RDF::Vocab::DC.date),  d.strftime('%Y-%m')) # YYYY-MM
 
           end
         rescue ArgumentError
@@ -88,7 +88,7 @@ module MappingMethods
     def load_compound_objects(collection, graph, subject)
       begin
         # Get the id from 'replaces' object so we can retrieve the .cpd file.
-        replaces = graph.query([nil, RDF::DC.replaces, nil])
+        replaces = graph.query([nil, RDF::Vocab::DC.replaces, nil])
         cis_id = replaces.first.object.to_s.split("#{collection},").last
         cpd_url = "http://oregondigital.org/cgi-bin/showfile.exe?CISOROOT=/#{collection}&CISOPTR=#{cis_id}&filename=cpdfilename"
         cpd_file = RestClient.get cpd_url

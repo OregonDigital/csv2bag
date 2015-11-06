@@ -9,6 +9,7 @@ require 'docopt'
 require './mapping_methods.rb'
 require_relative 'lib/desc_parser'
 require 'csv'
+require 'rdf/vocab'
 
 include MappingMethods
 
@@ -54,7 +55,7 @@ def create_graphs(file, collection)
           method_name = tag.to_s.split(':').last
           if 'REPLACE' == method_name.upcase
             record_id = item_val
-            graph << RDF::Statement(bnode, RDF::DC.replaces, RDF::URI("http://oregondigital.org/u?/#{collection},#{record_id}"))
+            graph << RDF::Statement(bnode, RDF::Vocab::DC.replaces, RDF::URI("http://oregondigital.org/u?/#{collection},#{record_id}"))
           else
             result = send(method_name.to_sym, bnode, item_val) unless @skip.include? item_val.downcase
             graph << result unless result.nil?
@@ -128,7 +129,7 @@ def add_content_file(graph, bag, dir, subject)
 
   begin
     # Get the replaces statement for this graph so we can refer to it later.
-    replaces_stmt = graph.query([subject, RDF::DC.replaces, nil])
+    replaces_stmt = graph.query([subject, RDF::Vocab::DC.replaces, nil])
     replaces_uri = replaces_stmt.first ? replaces_stmt.first.object : nil
 
     query = RDF::Query.new do

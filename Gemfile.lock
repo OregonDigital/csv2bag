@@ -242,6 +242,7 @@ DEPENDENCIES
   qa (~> 0.3.0)
   rdf (~> 1.99.0)
   rdf-raptor
+  rdf-vocab
   rest-client
 
 BUNDLED WITH

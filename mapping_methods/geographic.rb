@@ -25,7 +25,7 @@ module MappingMethods
     end
 
     def geographic_oe(subject, data)
-      geographic(subject, data, RDF::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
+      geographic(subject, data, RDF::Vocab::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
     end
 
     def ranger_district(subject, data)
@@ -56,7 +56,7 @@ module MappingMethods
       return graph if data == "" || data.nil?
       Array(data.split("/")).each do |str|
         str = siuslaw_mapping[str] || str
-        graph << geographic(subject, str, RDF::DC[:spatial], {:countryBias => "US", :name_startsWith => str, :orderBy => 'relevance'})
+        graph << geographic(subject, str, RDF::Vocab::DC[:spatial], {:countryBias => "US", :name_startsWith => str, :orderBy => 'relevance'})
       end
       return graph
     end
@@ -77,7 +77,7 @@ module MappingMethods
       }
     end
 
-    def geographic(subject, data, predicate=RDF::DC[:spatial], extra_params={})
+    def geographic(subject, data, predicate=RDF::Vocab::DC[:spatial], extra_params={})
       data.slice!(';')
       data.strip!
       unless geocache.include? data

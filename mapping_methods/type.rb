@@ -17,7 +17,7 @@ module MappingMethods
     def dcmitype(subject, data)
       data = data.capitalize.to_sym
       return nil unless DCMITYPES.include? data
-      return RDF::Graph.new << RDF::Statement.new(subject, RDF::DC.type, DCMITYPE_NS[data])
+      return RDF::Graph.new << RDF::Statement.new(subject, RDF::Vocab::DC.type, DCMITYPE_NS[data])
     end
 
     def types(subject, data)
@@ -33,7 +33,7 @@ module MappingMethods
     end
 
     def image_type(subject, data)
-      RDF::Graph.new << RDF::Statement.new(subject, RDF::DC.type, DCMITYPE_NS[:Image])
+      RDF::Graph.new << RDF::Statement.new(subject, RDF::Vocab::DC.type, DCMITYPE_NS[:Image])
     end
 
 
