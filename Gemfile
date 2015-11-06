@@ -9,3 +9,6 @@ gem 'rest-client'
 gem 'iso-639'
 gem 'rdf-raptor', :require => false
 gem 'qa', '~>0.3.0', :require => false
+
+# Support for multiple and better logging
+gem 'logging'
