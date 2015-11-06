@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'bagit'
 gem 'docopt'
 gem 'rdf', '~>1.99.0', :require => false
+gem 'rdf-vocab'
 gem 'linkeddata', :require => false
 gem 'nokogiri'
 gem 'rest-client'
