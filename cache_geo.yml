@@ -1,0 +1,9 @@
+---
+Jordan Israel; Lebanon; Palestine;:
+  :uri: Jordan Israel; Lebanon; Palestine;
+Israel:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/294640/
+Sudan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/366755/
