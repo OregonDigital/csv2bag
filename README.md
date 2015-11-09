@@ -29,12 +29,14 @@ The CSV file should be named **name_of_my_collection.csv** and located in the **
 
 
 #### Mapping
+* Specify a predicate to place the field's text. For fields that don't need any cleanup or lookups done. (Examples: title, identifier, description, etc.)
 * Use Dublin Core as a base element set
-* Use additional Linked Open Data (LOD) predicates
-* Use additional established opaquenamespace/Oregon Digital terms (make sure terms are added to [Opaque Namespace](https://github.com/OregonDigital/opaque_ns)
+* Can also use any additional Linked Open Data vocabularies in [rdf-vocab](https://github.com/ruby-rdf/rdf-vocab)
+* Follow the appropriate schema. ([Oregon Digital 1](https://github.com/OregonDigital/oregondigital/blob/master/app/models/datastream/oregon_rdf.rb), [ScholarsArchive@OSU](https://github.com/osulp/Scholars-Archive/blob/master/app/schemas/scholars_archive_schema.rb))
 
 #### Methods
 * Use a method for cleaning up known data errors or mapping strings to URIs
+* View [List of Methods](https://github.com/OregonDigital/csv2bag/wiki/List-of-Methods)
 * Define all methods in a comment (so that programmer knows intent of method)
 
 #### Optional Parameters
