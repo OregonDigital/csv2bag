@@ -1,3 +1,4 @@
+---
 Israel:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/294640/
@@ -16,3 +17,16 @@ Lebanon:
 Palestine:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/6254930/
+    hash: 1332001972252216346
+Amman:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/250441/
+Amsterdam:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2759794/
+Jerusalem:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7498240/
+Khartoum, Sudan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/379252/

@@ -35,10 +35,6 @@ module MappingMethods
       geocache
     end
 
-    def geographic_oe(subject, data)
-      geographic(subject, data, RDF::Vocab::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
-    end
-
     # Main geographic method. Checks cache, searches Geonames if no hit.
     def geographic(subject, data, predicate=RDF::Vocab::DC[:spatial], extra_params={})
       @log.debug("Geographic: " + data)
@@ -68,9 +64,19 @@ module MappingMethods
 
       graph
     end
-    
-    # Place of Publication
-    def geopup(subject, data)
+
+    # Geographic search limited to Oregon
+    def geographic_oregon(subject, data)
+      geographic(subject, data, RDF::Vocab::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
+    end
+
+    # Geographic search limited to the United States
+    def geographic_us(subject, data)
+      geographic(subject, data, RDF::Vocab::DC[:spatial], {:countryBias => "US"})
+    end
+
+    # Geographic search, Place of Publication predicate
+    def geographic_pup(subject, data)
       geographic(subject, data, RDF::URI("http://id.loc.gov/vocabulary/relators/pup"))
     end
   end
