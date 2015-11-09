@@ -39,32 +39,39 @@ module MappingMethods
       geographic(subject, data, RDF::Vocab::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
     end
 
+    # Main geographic method. Checks cache, searches Geonames if no hit.
     def geographic(subject, data, predicate=RDF::Vocab::DC[:spatial], extra_params={})
-      @log.info("Geographic: " + data)
+      @log.debug("Geographic: " + data)
 
-      data.slice!(';')
-      data.strip!
+      graph = RDF::Graph.new
 
-      unless geocache.include? data
-        begin
-          geonames_search(data, extra_params)
-        rescue => e
-          puts subject, data, e.backtrace
+      Array(data.split(';')).each do |location|
+        location.strip!
+
+        @log.debug("Geographic split: " + location)
+
+        unless geocache.include? location
+          begin
+            geonames_search(location, extra_params)
+          rescue => e
+            puts subject, location, e.backtrace
+          end
+        end
+
+        if geocache.include? location
+          graph << RDF::Statement.new(subject, predicate, geocache[location][:uri])
+        else
+          @log.warn("Geographic URI not found: " + location)
+#          graph << RDF::Statement.new(subject, predicate, location)
         end
       end
 
-      if geocache.include? data
-        graph = RDF::Graph.new
-        graph << RDF::Statement.new(subject, predicate, geocache[data][:uri])
-        return graph#  << geonames_graph(geocache[data][:uri], data)
-      else
-        return RDF::Statement.new(subject, predicate, data)
-      end
+      graph
     end
     
     # Place of Publication
     def geopup(subject, data)
-      geographic(subject, RDF::URI("http://id.loc.gov/vocabulary/relators/pup"), data)
+      geographic(subject, data, RDF::URI("http://id.loc.gov/vocabulary/relators/pup"))
     end
   end
 end
