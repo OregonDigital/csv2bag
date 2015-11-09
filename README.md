@@ -20,13 +20,22 @@ bundle exec ./csv2bag -h
 csv2bag expects the .csv file to have:
 
 * a header row as the first row
-* a mapping row as the second row where each column contains one of the following:
+* a mapping row as the second row, where each column contains one of the following:
     * the keyword SKIP to indicate that column won't be processed
     * the term for that column
     * the method to be used to generate the term for that column in the format *method:METHOD_NAME*
 
 The CSV file should be named **name_of_my_collection.csv** and located in the **/metadata/name_of_my_collection** folder, along with the files that are to be bagged.
 
+##### Example CSV snippet
+
+```
+Identifer,Article Title,Rights Statement,Primary author or editor,Publisher,Place of Publication,Subject(s),Countries
+dce:identifier,dct:title,method:rights,method:creator,SKIP,method:geographic_pup,method:lcsubject,method:geographic
+1,Hassan - Israel Water Policy Pressurizes Occupied Arabs,Rights Restricted - Free Access,"Sorman, Unal; Balkan, Guven",Jordan Newspaper Co.,Amman,Politics and government; Armed Forces; Agriculture; Settlements,Jordan; Israel
+2,"Seawater vs. Brackish Water Desalting-- Technology, Operating Problems and Overall Economics",Rights Reserved - Restricted Access,"Glueckstern, P.; Kantor, Y.",Elsevier,Amsterdam,Technology; Economics; Saline water conversion,Israel
+3,Desalination at Inland Sites,http://www.europeana.eu/rights/rr-r/,"Gendel, A.",Elsevier,Amsterdam,Technology; Economics; Mediterranean Sea,Israel
+```
 
 #### Mapping
 * Specify a predicate to place the field's text. For fields that don't need any cleanup or lookups done. (Examples: title, identifier, description, etc.)
