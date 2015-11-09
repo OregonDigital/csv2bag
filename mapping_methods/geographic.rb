@@ -1,19 +1,26 @@
-
 require 'rdf'
 require 'rest-client'
 require 'json'
 require 'rdf/ntriples'
 require 'rdf/raptor'
+require 'yaml'
 
 module MappingMethods
   module Geographic
     def geocache
+      unless @geocache
+        if File.exist?("cache_geo.yml")
+          @geocache = YAML.load(File.read("cache_geo.yml"))
+          @log.info "Loading #{@geocache.length} entries from Geo Cache"
+        end
+      end
       @geocache ||= {}
     end
 
     def geonames_search(str, extra_params={})
       str.slice! '(Ore.)'
       str.slice! '(Ore)'
+
       response = RestClient.get 'http://api.geonames.org/searchJSON', {:params => {:username => 'johnson_tom', :q => str, :maxRows => 1, :style => 'short'}.merge(extra_params)}
       response = JSON.parse(response)
       if response["totalResultsCount"] != 0
@@ -22,82 +29,55 @@ module MappingMethods
       else
         geocache[str] = {:uri => str}
       end
-    end
-
-    def geographic_oe(subject, data)
-      geographic(subject, data, RDF::Vocab::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
-    end
-
-    def ranger_district(subject, data)
-      return if data == ""
-      graph = RDF::Graph.new
-      Array(data.split("/")).each do |district|
-        uri = ranger_district_mapping[district]
-        graph << RDF::Statement.new(subject, RDF::URI("http://opaquenamespace.org/ns/rangerDistrict"), RDF::URI(uri)) if uri
+      File.open("cache_geo.yml", 'w') do |f|
+        f.write geocache.to_yaml
       end
+      geocache
+    end
+
+    # Main geographic method. Checks cache, searches Geonames if no hit.
+    def geographic(subject, data, predicate=RDF::Vocab::DC[:spatial], extra_params={})
+      @log.debug("Geographic: " + data)
+
+      graph = RDF::Graph.new
+
+      Array(data.split(';')).each do |location|
+        location.strip!
+
+        @log.debug("Geographic split: " + location)
+
+        unless geocache.include? location
+          begin
+            geonames_search(location, extra_params)
+          rescue => e
+            puts subject, location, e.backtrace
+          end
+        end
+
+        if geocache.include? location
+          graph << RDF::Statement.new(subject, predicate, geocache[location][:uri])
+        else
+          @log.warn("Geographic URI not found: " + location)
+#          graph << RDF::Statement.new(subject, predicate, location)
+        end
+      end
+
       graph
     end
 
-    def ranger_district_mapping
-      {
-        "Waldport" => "http://sws.geonames.org/5758901",
-        "Waldpot" => "http://sws.geonames.org/5758901",
-        "Alsea" => "http://sws.geonames.org/5711134",
-        "ODNRA" => "http://www.geonames.org/5744262",
-        "Smith River" => "http://www.geonames.org/5752710",
-        "Mapleton" => "http://www.geonames.org/9406413",
-        "Hebo?" => "http://www.geonames.org/7310461",
-        "Hebo" => "http://www.geonames.org/7310461"
-      }
+    # Geographic search limited to Oregon
+    def geographic_oregon(subject, data)
+      geographic(subject, data, RDF::Vocab::DC[:spatial], {:adminCode1 => "OR", :countryBias => "US"})
     end
 
-    def siuslaw_geographic(subject, data)
-      graph = RDF::Graph.new
-      return graph if data == "" || data.nil?
-      Array(data.split("/")).each do |str|
-        str = siuslaw_mapping[str] || str
-        graph << geographic(subject, str, RDF::Vocab::DC[:spatial], {:countryBias => "US", :name_startsWith => str, :orderBy => 'relevance'})
-      end
-      return graph
+    # Geographic search limited to the United States
+    def geographic_us(subject, data)
+      geographic(subject, data, RDF::Vocab::DC[:spatial], {:countryBias => "US"})
     end
 
-    def siuslaw_mapping
-      {
-        "Alsea" => "Alsea Place",
-        "ODNRA" => "Oregon Dunes National Recreation Area",
-        "Smith River" => "Smith River, Oregon",
-        "Mapleton" => "Mapleton, OR",
-        "Waldpot" => "Waldport",
-        "Hebo?" => "Hebo, OR Place",
-        "Hebo" => "Hebo, OR Place",
-        'Scenic landscape' => 'Landscapes',
-        'Silviculture' => 'Forests and forestry',
-        'Lumber industry' => 'Lumber trade',
-        'Homesteading' => 'Frontier and pioneer life',
-      }
-    end
-
-    def geographic(subject, data, predicate=RDF::Vocab::DC[:spatial], extra_params={})
-      data.slice!(';')
-      data.strip!
-      unless geocache.include? data
-        begin
-          geonames_search(data, extra_params)
-        rescue => e
-          puts subject, data, e.backtrace
-        end
-      end
-      if geocache.include? data
-        graph = RDF::Graph.new
-        graph << RDF::Statement.new(subject, predicate, geocache[data][:uri])
-        return graph#  << geonames_graph(geocache[data][:uri], data)
-      else
-        return RDF::Statement.new(subject, predicate, data)
-      end
-    end
-    
-    def geopup(subject, data)
-      geographic(subject, RDF::URI("http://id.loc.gov/vocabulary/relators/pup"), data)
+    # Geographic search, Place of Publication predicate
+    def geographic_pup(subject, data)
+      geographic(subject, data, RDF::URI("http://id.loc.gov/vocabulary/relators/pup"))
     end
   end
 end
