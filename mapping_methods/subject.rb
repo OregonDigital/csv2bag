@@ -75,9 +75,5 @@ module MappingMethods
 
       graph
     end
-
-    def lcsubject_siuslaw(subject, data)
-      lcsubject(subject, data.gsub(",",";"))
-    end
   end
 end
