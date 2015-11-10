@@ -4,7 +4,7 @@ module Qa; end
 require 'qa/authorities/web_service_base'
 require 'qa/authorities/loc'
 module MappingMethods
-  module Lcsh
+  module Subject
     def lcsubject(subject, data)
       authority = Qa::Authorities::Loc.new
       graph = RDF::Graph.new
