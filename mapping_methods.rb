@@ -13,7 +13,7 @@ module MappingMethods
   include MappingMethods::Collection
   include MappingMethods::Replace
   include MappingMethods::Ethnographic
-  include MappingMethods::Lcsh
+  include MappingMethods::Subject
   include MappingMethods::Institution
   include MappingMethods::Sports
   include MappingMethods::Cleanup

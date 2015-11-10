@@ -1,0 +1,143 @@
+---
+Politics and government:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh2002011436
+    hash: -4043763151647910852
+  :label: Politics and government
+Armed Forces:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85007241
+    hash: 597871711428473081
+  :label: Armed Forces
+Agriculture:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85002415
+    hash: -2625492484215808265
+  :label: Agriculture
+Rivers:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85114250
+    hash: 2706115563626966196
+  :label: Rivers
+Settlements:
+  :uri: Settlements
+  :label: Settlements
+Occupied territories:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh00006864
+    hash: -552548797806259717
+  :label: Occupied territories
+Zionism:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85149886
+    hash: 3680066894606126858
+  :label: Zionism
+Water diversion:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85145554
+    hash: 2769097826661813404
+  :label: Water diversion
+Technology:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85133147
+    hash: -436746570954526064
+  :label: Technology
+Economics:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85040850
+    hash: -3760626989325459720
+  :label: Economics
+Saline water conversion:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85116768
+    hash: 2019801803333276768
+  :label: Saline water conversion
+Water--Purification--Distillation process:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85145483
+    hash: -634246433766797904
+  :label: Water--Purification--Distillation process
+Reverse osmosis:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85113438
+    hash: -629397671133431940
+  :label: Reverse osmosis
+Seawater:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85119275
+    hash: -2078648134063816330
+  :label: Seawater
+Water quality:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85145600
+    hash: 1857854310176369022
+  :label: Water quality
+Mediterranean Sea:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85083236
+    hash: -2968376960124881043
+  :label: Mediterranean Sea
+Dead Sea (Israel and Jordan):
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85036040
+    hash: -1933362767771133098
+  :label: Dead Sea (Israel and Jordan)
+Water consumption:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85145546
+    hash: -3745809072094741995
+  :label: Water consumption
+Demography:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85036659
+    hash: 4581589540535620212
+  :label: Demography
+Diseases:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85038411
+    hash: -4040888137099113671
+  :label: Diseases
+Water-supply:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85145648
+    hash: 1753648545874000675
+  :label: Water-supply
+Health:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85059518
+    hash: -2696533258362600906
+  :label: Health
+Construction:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh99005337
+    hash: 647483363592873606
+  :label: Construction
+Hydrology:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85063458
+    hash: -4256109811604135770
+  :label: Hydrology
+Engineering:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85043176
+    hash: 4178879588686780083
+  :label: Engineering
+Population:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85104910
+    hash: -4344262211228455229
+  :label: Population
+Water-power:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85145596
+    hash: -2909916316277021803
+  :label: Water-power
+Conservation:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh99005329
+    hash: 1054011815108899406
+  :label: Conservation
+Steam-turbines:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/subjects/sh85127709
+  :label: Steam-turbines
