@@ -11,7 +11,11 @@ module MappingMethods
     def iso_language(subject, data)
       graph = RDF::Graph.new
       data.split(';').each do |lang|
-        iso_lang = ISO_639.find(lang.strip)
+        iso_lang = ISO_639.find_by_english_name(lang.strip)
+        # Try searching by code if English name not found
+        iso_lang ||= ISO_639.find(lang.strip) if iso_lang.nil?
+
+        @log.debug("Language: iso_lang = " + iso_lang.to_s)
 
         if iso_lang
           unless language_cache.include? iso_lang.first
@@ -22,17 +26,19 @@ module MappingMethods
           lang_uri = language_cache[iso_lang.first].subjects.first
           q = RDF::Query.new do
             pattern [lang_uri, RDF.type, RDF::URI('http://www.loc.gov/mads/rdf/v1#Language')]
-            pattern [:lang, RDF::SKOS.prefLabel, :prefLabel]
+            pattern [:lang, RDF::Vocab::SKOS.prefLabel, :prefLabel]
           end
 
           q.execute(language_cache[iso_lang.first]).each do |solution|
             if solution[:prefLabel].language == :en
-              graph << RDF::Statement.new(solution[:lang], RDF::SKOS.prefLabel, solution[:prefLabel])
               graph << RDF::Statement.new(subject, RDF::Vocab::DC.language, solution[:lang])
+              # Stop if one language URI found
+              break
             end
           end
         else
-          graph << RDF::Statement.new(subject, RDF::URI.new('http://purl.org/dc/elements/1.1/language'), RDF::Literal.new(data))
+          @log.warn("No Language URI found for: " + data)
+          graph << RDF::Statement.new(subject, RDF::Vocab::DC11.language, data)
         end
       end
       graph
