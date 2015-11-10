@@ -46,8 +46,8 @@ module MappingMethods
       subject_cache
     end
 
-
-    def lcsubject(subject, data)
+    # Main subject method. Searches cache, then if no hit tries LCSH.
+    def subject(subject, data)
       graph = RDF::Graph.new
 
       Array(data.split(';')).each do |subject_name|
@@ -65,6 +65,7 @@ module MappingMethods
           end
         end
 
+        # If no URI is found, use the fallback predicate for keywords
         if subject_cache[subject_name][:uri].to_s.include?('http')
           graph << RDF::Statement.new(subject, RDF::Vocab::DC.subject, subject_cache[subject_name][:uri])
         else
