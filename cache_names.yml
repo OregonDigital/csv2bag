@@ -26,3 +26,7 @@ Fisher, U.:
 Tadros, Sameer K.:
   :uri: Tadros, Sameer K.
   :label: Tadros, Sameer K.
+Winslow, Anne:
+  :uri: !ruby/object:RDF::URI
+    value: http://id.loc.gov/authorities/names/n84226735
+  :label: Winslow, Anne

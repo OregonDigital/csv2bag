@@ -25,10 +25,10 @@ module MappingMethods
         creator_name.gsub!('"', "")
         next if creator_name.gsub("-","") == ""
 
-        @log.debug("Creator split: " + creator_name)
+        @log.debug("Name split: " + creator_name)
 
         begin
-          uri = authority.search("#{creator_name}", "names").find{|x| x["label"].strip.downcase == creator_name.downcase} 
+          uri = authority.search("#{creator_name}", "names").find{|x| x["label"].strip.downcase == creator_name.downcase} ||
             authority.search("#{creator_name}", "subjects").find{|x| x["label"].strip.downcase == creator_name.downcase} #|| 
 #            MappingMethods::Lcsh::name_uri_from_opaquens("#{creator_name}")
         rescue StandardError => e
@@ -36,8 +36,6 @@ module MappingMethods
         end
 
         uri ||= ""
-
-        @log.debug("Result URI: " + uri)
 
         if !uri.nil? && uri != ""
           parsed_uri = uri["id"].gsub("info:lc", "http://id.loc.gov")
@@ -57,7 +55,7 @@ module MappingMethods
     end
 
     # Main creator method. Checks name cache, does lookup if no cache hit. Can accept other predicates.
-    def creator(subject, data, predicate=RDF::Vocab::DC11[:creator])
+    def creator(subject, data, predicate=RDF::Vocab::DC11.creator)
       @log.debug("Creator: " + data)
 
       graph = RDF::Graph.new
@@ -77,10 +75,16 @@ module MappingMethods
           graph << RDF::Statement.new(subject, predicate, name_cache[name][:uri])
         else
           @log.warn("Name URI not found: " + name)
+          graph << RDF::Statement.new(subject, predicate, name)
         end
       end
 
       graph
+    end
+
+    # Use same creator code with contributor predicate
+    def contributor(subject, data)
+      creator(subject, data, RDF::Vocab::DC11.contributor)
     end
 
   end
