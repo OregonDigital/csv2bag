@@ -82,9 +82,39 @@ module MappingMethods
       graph
     end
 
-    # Use same creator code with contributor predicate
+    # Use creator method with contributor predicate
     def contributor(subject, data)
       creator(subject, data, RDF::Vocab::DC11.contributor)
+    end
+
+    # Use creator method with artist predicate
+    def artist(subject, data)
+      creator(subject, data, RDF::Vocab::MARCRelators.art)
+    end
+
+    # Use creator method with author predicate
+    def author(subject, data)
+      creator(subject, data, RDF::Vocab::MARCRelators.aut)
+    end
+
+    # Use creator method with editor predicate (Schema.org used over MarcRelators because that's what OD currently uses)
+    def editor(subject, data)
+      creator(subject, data, RDF::Vocab::SCHEMA.editor)
+    end
+
+    # Use creator method with interviewee predicate
+    def interviewee(subject, data)
+      creator(subject, data, RDF::Vocab::MARCRelators.ive)
+    end
+
+    # Use creator method with interviewer predicate
+    def interviewer(subject, data)
+      creator(subject, data, RDF::Vocab::MARCRelators.ivr)
+    end
+
+    # Use creator method with translator predicate
+    def translator(subject, data)
+      creator(subject, data, RDF::Vocab::MARCRelators.trl)
     end
 
   end
