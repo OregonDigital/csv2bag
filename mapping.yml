@@ -14,7 +14,7 @@ namespaces:
   modsrdf: "http://www.loc.gov/standards/mods/modsrdf/v1/"
   premis: "http://www.loc.gov/premis/rdf/v1#"
   oregon: "http://opaquenamespace.org/ns/"
-  vra: "http://www.loc.gov/standards/vracore/vocab/"
+  vra: "http://opaquenamespace.org/ns/vra/"
   aat: "http://vocab.getty.edu/resource/aat/"
   exif: "http://www.w3.org/2003/12/exif/"
   dwc: "http://rs.tdwg.org/dwc/terms/"
