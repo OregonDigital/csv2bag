@@ -25,7 +25,7 @@ module MappingMethods
       response = JSON.parse(response)
       if response["totalResultsCount"] != 0
         uri = "http://sws.geonames.org/#{response['geonames'][0]['geonameId']}/"
-        geocache[str] = {:uri => RDF::URI(uri)}
+        geocache[str] = {:uri => RDF::URI(uri), :label => response['geonames'][0]['name']}
       else
         geocache[str] = {:uri => str}
       end
@@ -43,6 +43,7 @@ module MappingMethods
 
       Array(data.split(';')).each do |location|
         location.strip!
+        next if location.empty?
 
         @log.debug("Geographic split: " + location)
 
@@ -78,6 +79,12 @@ module MappingMethods
     # Geographic search, Place of Publication predicate
     def geographic_pup(subject, data)
       geographic(subject, data, RDF::URI("http://id.loc.gov/vocabulary/relators/pup"))
+    end
+
+    # Geographic search, Water Basin predicate
+    def geographic_waterbasin(subject, data)
+      data.gsub!(' Basin', '')
+      geographic(subject, data, RDF::URI("http://opaquenamespace.org/ns/waterBasin"))
     end
   end
 end
