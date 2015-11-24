@@ -96,7 +96,7 @@ def map_set
       'gwilliams' => 'gwilliams',
       'herbarium' => 'herbarium',
       'streamsurve' => 'streamsurvey',
-      'mewater' => 'mewater',
+      'mewaters' => 'middle-east-water',
   }
 end
 
