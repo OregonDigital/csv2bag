@@ -1,32 +1,289 @@
 ---
-Israel:
-  :uri: !ruby/object:RDF::URI
-    value: http://sws.geonames.org/294640/
-    hash: -3792119720203132710
-Sudan:
-  :uri: !ruby/object:RDF::URI
-    value: http://sws.geonames.org/366755/
 Jordan:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/248816/
-    hash: -2489030619903388414
+    hash: 2952725245689153158
+  :label: Jordan
+Israel:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/294640/
+    hash: -4597691873397434260
+  :label: Israel
 Lebanon:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/272103/
-    hash: 1227104238136184266
+    hash: 351208959771865803
+  :label: Lebanon
 Palestine:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/6254930/
-    hash: 1332001972252216346
-Amman:
+    hash: 3062152020573515742
+  :label: Palestine
+Sudan:
   :uri: !ruby/object:RDF::URI
-    value: http://sws.geonames.org/250441/
-Amsterdam:
+    value: http://sws.geonames.org/366755/
+    hash: 2202923758110969111
+  :label: Sudan
+Egypt:
   :uri: !ruby/object:RDF::URI
-    value: http://sws.geonames.org/2759794/
-Jerusalem:
+    value: http://sws.geonames.org/357994/
+    hash: -3876020490201255907
+  :label: Egypt
+Syria:
   :uri: !ruby/object:RDF::URI
-    value: http://sws.geonames.org/7498240/
-Khartoum, Sudan:
+    value: http://sws.geonames.org/163843/
+    hash: -4017714868766404194
+  :label: Syria
+Iraq:
   :uri: !ruby/object:RDF::URI
-    value: http://sws.geonames.org/379252/
+    value: http://sws.geonames.org/99237/
+    hash: -3793031933697273344
+  :label: Iraq
+Turkey:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/298795/
+    hash: 2339067470939215828
+  :label: Turkey
+South Sudan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7909807/
+    hash: 2799329949279055730
+  :label: South Sudan
+Ethiopia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/337996/
+    hash: -4281340352914457085
+  :label: Ethiopia
+United States:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/6252001/
+    hash: 880110730077802291
+  :label: United States
+Central African Republic:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/239880/
+  :label: Central African Republic
+Russia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2017370/
+    hash: -3629280746271411784
+  :label: Russia
+Iran:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/130758/
+    hash: 3422592948563346424
+  :label: Iran
+United Arab Emirates:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/290557/
+    hash: 1013642938894567383
+  :label: United Arab Emirates
+Hungary:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/719819/
+    hash: -4486827050325001995
+  :label: Hungary
+Germany:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2921044/
+    hash: -1899410182602032986
+  :label: Germany
+Poland:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/798544/
+    hash: -394507435605822169
+  :label: Poland
+Belgium:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2802361/
+    hash: 4430800896356686607
+  :label: Belgium
+Portugal:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2264397/
+    hash: 712957544739729979
+  :label: Portugal
+Spain:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2510769/
+    hash: -627914307027469675
+  :label: Spain
+Afghanistan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1149361/
+    hash: 4387158681637966420
+  :label: Afghanistan
+Great Britain:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2635167/
+    hash: -2101233548137577749
+  :label: United Kingdom
+Pakistan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1168579/
+    hash: 1623488343162070607
+  :label: Pakistan
+India:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1269750/
+    hash: 4480045628038177816
+  :label: India
+Uzbekistan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1512440/
+    hash: 1821530148955138252
+  :label: Uzbekistan
+Kazakhstan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1522867/
+    hash: -3119646693734746623
+  :label: Kazakhstan
+Tajikistan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1220409/
+    hash: -3052369656305002016
+  :label: Tajikistan
+Turkmenistan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1218197/
+    hash: 1150524608619111761
+  :label: Turkmenistan
+Saudi Arabia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/102358/
+    hash: -2389903872974302050
+  :label: Saudi Arabia
+israel:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/294640/
+  :label: Israel
+Bahrain:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/290291/
+    hash: -2380979230952500884
+  :label: Bahrain
+Qatar:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/289688/
+    hash: 1532997469324357398
+  :label: Qatar
+Mexico:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3996063/
+  :label: Mexico
+France:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3017382/
+    hash: 3034511728759456976
+  :label: France
+China:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1814991/
+  :label: China
+Philippines:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1694008/
+  :label: Philippines
+Thailand:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1605651/
+  :label: Thailand
+Austria:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2782113/
+  :label: Austria
+Tunisia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2464461/
+  :label: Tunisia
+Morocco:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2542007/
+    hash: -3103566487148139265
+  :label: Morocco
+Algeria:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2589581/
+    hash: -1857296832882635483
+  :label: Algeria
+Libya:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2215636/
+    hash: 367870137519594276
+  :label: Libya
+Bangladesh:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1210997/
+  :label: Bangladesh
+Indonesia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1643084/
+  :label: Indonesia
+Cyprus:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/146669/
+    hash: -1276031237718599912
+  :label: Cyprus
+Kuwait:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/285570/
+    hash: -597582333073320852
+  :label: Kuwait
+Oman:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/286963/
+    hash: 3822933936147898665
+  :label: Oman
+United Kingdom:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2635167/
+    hash: -2101233548137577749
+  :label: United Kingdom
+Jordan River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/294624/
+    hash: -2729567216113291153
+  :label: Jordan River
+Nile River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/408664/
+  :label: River Nile
+Euphrates River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/315147/
+    hash: -1625004228037184000
+  :label: Euphrates River
+Orontes River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/303365/
+  :label: Orontes River
+Litani River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/272089/
+    hash: 2524832994942042642
+  :label: Litani River
+Tigris River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/96998/
+    hash: 2894561372559853283
+  :label: Tigris River
+Helmand River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7015667/
+  :label: Helmand Rōd
+Indus River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1115007/
+  :label: Indus River
+Danube River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/791630/
+  :label: Danube River
+Rio Grande River:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3532104/
+  :label: Rio Grande
+Kyrgyzstan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1527747/
+  :label: Kyrgyzstan
