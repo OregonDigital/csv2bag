@@ -96,7 +96,7 @@ def map_set
       'gwilliams' => 'gwilliams',
       'herbarium' => 'herbarium',
       'streamsurve' => 'streamsurvey',
-      'mewater' => 'mewater',
+      'mewaters' => 'middle-east-water',
   }
 end
 
@@ -137,7 +137,7 @@ def add_content_file(graph, bag, dir, subject)
     end
     results = query.execute(graph)
     if results.empty?
-      @log.warn("No FULL found for #{replaces_uri}")
+      @log.warn("No FULL predicate found for #{replaces_uri}")
       return nil
     end
     fname = Pathname(results.first[:full].to_s).basename.to_s unless fname

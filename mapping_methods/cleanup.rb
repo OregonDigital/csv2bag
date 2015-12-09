@@ -3,6 +3,16 @@ require 'rdf'
 module MappingMethods
   module Cleanup
 
+    def mewaters_cleanup(collection, graph, subject)
+
+      # Add the repository field for this collection.
+      graph << RDF::Statement.new(subject, RDF::URI.new(@namespaces['marcrel']['rps']), RDF::URI.new('http://id.loc.gov/authorities/names/n00020491'))
+
+      # Add contributingInstitution field for this collection
+      graph << RDF::Statement.new(subject, RDF::URI.new(@namespaces['oregon']['contributingInstitution']), RDF::URI.new('http://dbpedia.org/resource/Oregon_State_University'))
+    end
+
+
     def human_to_date(subject, human_date)
 
       # Attempts to convert the plain language formatted date into an ISO8601 formatted dct:date statement.
