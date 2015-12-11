@@ -53,7 +53,7 @@ module MappingMethods
       end
 
       if !rightsURI.to_s.empty?
-        graph << RDF::Statement(subject, RDF::Vocab::DC.rights, rightsURI)
+        graph << RDF::Statement(subject, RDF::Vocab::DC.rights, RDF::URI(rightsURI))
       end
 
       @log.info("Rights URI = " + rightsURI)
