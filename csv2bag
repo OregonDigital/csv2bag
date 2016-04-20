@@ -65,8 +65,9 @@ def create_graphs(file, collection)
           ns, term = tag.to_s.split(':')
           graph << RDF::Statement.new(bnode, @namespaces[ns][term], item_val) unless @skip.include? item_val.downcase
         end
-      rescue NoMethodError
+      rescue NoMethodError => e
         @missing_fields << tag unless @missing_fields.include? tag
+        puts "NoMethodError" + " " + e.message
       end
     end
 
@@ -130,7 +131,7 @@ def add_content_file(graph, bag, dir, subject)
   begin
     # Get the replaces statement for this graph so we can refer to it later.
     replaces_stmt = graph.query([subject, RDF::Vocab::DC.replaces, nil])
-    replaces_uri = replaces_stmt.first ? replaces_stmt.first.object : nil
+    replaces_uri = replaces_stmt.first ? replaces_stmt.first.object : (@folder_id - 1)
 
     query = RDF::Query.new do
       pattern [subject, RDF::URI('http://opaquenamespace.org/ns/full'), :full]
@@ -175,7 +176,7 @@ def add_content_file(graph, bag, dir, subject)
     end
     graph.delete(fulljpg_stmt)
   rescue Errno::ENOENT => e
-    @log.warn("#{fname} :: No file found for #{replaces_uri}.")
+    @log.warn("#{fname} :: No file found for #{replaces_uri}." + e.message)
   end
 end
 
