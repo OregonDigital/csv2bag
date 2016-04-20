@@ -4,32 +4,68 @@ require 'sparql/client'
 module MappingMethods
   module AAT
 
+    def aat_cache
+      unless @aat_cache
+        if File.exist?("cache/aat_cache.yml")
+          @aat_cache = YAML.load(File.read("cache/aat_cache.yml"))
+          @log.info "Loading #{@aat_cache.length} entries from AAT cache"
+        end
+      end
+      @aat_cache ||= {}
+    end
+
     def aat_search(str)
       str = str.downcase
-      @type_cache ||= {}
-      return @type_cache[str] if @type_cache.include?(str)
-      sparql = SPARQL::Client.new("http://vocab.getty.edu/sparql")
 
-      q = "select distinct ?subj {?subj skos:prefLabel|skos:altLabel ?label. filter(str(?label)=\"#{str}\")}"
-      @type_cache[str] = sparql.query(q, :content_type => "application/sparql-results+json")
+      return aat_cache[str][:uri] if aat_cache.include?(str)
+
+      uri ||= ""
+
+      begin
+        @log.info("Searching AAT for: " + str)
+        sparql = SPARQL::Client.new("http://vocab.getty.edu/sparql")
+        q = "select distinct ?subj {?subj skos:prefLabel|skos:altLabel ?label. filter(str(?label)=\"#{str}\")}"
+        result = sparql.query(q, :content_type => "application/sparql-results+json")
+
+        solution = result.first
+        uri = solution[:subj] if solution
+      rescue => e
+        puts str, e.message, e.backtrace
+      end
+
+      @log.debug("AAT Result URI: " + uri.to_s)
+
+      if !uri.to_s.empty?
+        @log.info("AAT Result found for " + str + ": " + uri.to_s)
+        aat_cache[str] = {:uri => RDF::URI(uri), :label => str}
+      else
+        @log.warn("No AAT found for #{str}") unless aat_cache.include?(str)
+        aat_cache[str] = {:uri => str, :label => str}
+      end
+
+      File.open("cache/aat_cache.yml", 'w') do |f|
+        f.write aat_cache.to_yaml
+      end
+
+      uri
     end
 
     def aat_from_search(subject, data)
-      r = RDF::Graph.new
+      graph = RDF::Graph.new
       data = data.split(";")
       Array(data).each do |type|
-        filtered_type = type.downcase.strip.gsub("film ","")
+        @log.debug("AAT split: " + type)
         filtered_type = type_match[filtered_type] if type_match.include?(filtered_type)
-        uri = aat_search(filtered_type).first
-        unless uri
-          r << RDF::Statement.new(subject, RDF.type, type)
-          puts "No result for #{type}"
-          next
+        uri = aat_search(type)
+
+        if uri.kind_of? RDF::URI
+          graph << RDF::Statement.new(subject, RDF.type, uri)
+        else
+          @log.warn("No AAT URI for #{type}")
         end
-        uri = uri.to_hash[:subj] if uri
-        r << RDF::Statement.new(subject, RDF.type, uri)
       end
-      r
+
+      graph
     end
 
     def type_match
