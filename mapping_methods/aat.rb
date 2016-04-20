@@ -86,42 +86,6 @@ module MappingMethods
       }
     end
 
-
-    def aat_siuslaw(subject, data)
-      r = RDF::Graph.new
-      uri = 'http://vocab.getty.edu/aat/'
-      if data.start_with?("Slide")
-        uri += "300128371"
-      elsif data == "Photograph"
-        uri += "300046300"
-      elsif data == "Negative"
-        uri += "300128695"
-      elsif data == "Cartoon"
-        uri += "300123430"
-      elsif data == "Postcard"
-        uri += "300026816"
-      elsif data == "Text"
-        uri += '300263751'
-      end
-      r << RDF::Statement.new(subject, RDF.type, RDF::URI(uri))
-    end
-
-    def aat_siuslaw_colorcontent(subject, data)
-      r = RDF::Graph.new
-      uri = 'http://vocab.getty.edu/aat/'
-      if data == "BW" || data == "B/W" || data == "black and white" || "Black&white" == data || "Black & white" == data
-        uri += "300265434"
-      elsif data == "Color"
-        uri += "300056130"
-      elsif data == "RGB"
-        uri += "300266239"
-      else
-        raise "Unknown siuslaw color sent: #{data}"
-      end
-      r << RDF::Statement.new(subject, RDF::URI.new("http://bibframe.org/vocab-list/#colorContent"), RDF::URI.new(uri))
-    end
-
-
   end
 
   # Workaround for frequent net connection errors with Getty sparql endpoint.
