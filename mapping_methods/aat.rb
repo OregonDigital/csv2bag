@@ -55,10 +55,15 @@ module MappingMethods
       data = data.split(";")
       Array(data).each do |type|
         @log.debug("AAT split: " + type)
-        filtered_type = type_match[filtered_type] if type_match.include?(filtered_type)
-        uri = aat_search(type)
+
+        if matched_uris.include?(type)
+          uri = RDF::URI(matched_uris[type])
+        else
+          uri = aat_search(type)
+        end
 
         if uri.kind_of? RDF::URI
+          @log.info("AAT Result URI for #{type}: #{uri.to_s}")
           graph << RDF::Statement.new(subject, RDF.type, uri)
         else
           @log.warn("No AAT URI for #{type}")
@@ -68,23 +73,29 @@ module MappingMethods
       graph
     end
 
-    def type_match
+    # To avoid possible search lookup failures, can specify matched URIs here
+    # This is checked before the cache.
+    def matched_uris
       {
-        "slides" => "slides (photographs)",
-        "negatives" => "negatives (photographic)",
-        "book illustrations" => "illustrations (layout features)",
-        "programs" => "programs (documents)",
-        "letters" => "letters (correspondence)",
-        "cyanotypes" => "cyanotypes (photographic prints)",
-        "fillms" => "films",
-        "mezzotint" => "mezzotints (prints)",
-        "relief" => "relief print",
-        "intaglio" => "intaglio prints",
-        "reproduction" => "reproductions",
-        "monotypes" => "monotypes (planographic prints)",
-        "aquatint" => "aquatints (prints)",
+        "Blouse" => "http://vocab.getty.edu/aat/300046133",   # blouses (main garments)
+        "Boots" => "http://vocab.getty.edu/aat/300046057",   # boots (footwear)
+        "Camisole" => "http://vocab.getty.edu/aat/300210541",   # camisoles (underbodices)
+        "Cap" => "http://vocab.getty.edu/aat/300046094",  # caps (headgear)
+        "Calotte" => "http://vocab.getty.edu/aat/300046125",   # skullcaps (caps) [calottes (headgear) is alternate]
+        "Drawers" => "http://vocab.getty.edu/aat/300210555",   # drawers (underpants)
+        "Dress" => "http://vocab.getty.edu/aat/300046159",   # dresses (garments)
+        "Evening gown" => "http://vocab.getty.edu/aat/300243843",   # evening dresses (garments)
+        "Night Shirt" => "http://vocab.getty.edu/aat/300209952",   # nightshirts
+        "Mary Janes" => "http://opaquenamespace.org/ns/workType/maryjanes",
+        "Pillbox" => "http://vocab.getty.edu/aat/300046109",   # pillboxes (hats)
+        "Platform Sandal" => "http://opaquenamespace.org/ns/workType/platformsandal",
+        "Pumps" => "http://vocab.getty.edu/aat/300210043",   # pumps (shoes)
+        "Shoes" => "http://vocab.getty.edu/aat/300046065",   # shoes (footwear)
+        "Slip" => "http://vocab.getty.edu/aat/300210564",   # slips (underwear)
+        "T-strap Shoe" => "http://opaquenamespace.org/ns/workType/tstrapshoes",
+        "Textile Panel" => "http://opaquenamespace.org/ns/workType/textilepanel",
       }
-    end
+    end 
 
   end
 
