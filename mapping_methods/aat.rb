@@ -94,32 +94,24 @@ module MappingMethods
         "Slip" => "http://vocab.getty.edu/aat/300210564",   # slips (underwear)
         "T-strap Shoe" => "http://opaquenamespace.org/ns/workType/tstrapshoes",
         "Textile Panel" => "http://opaquenamespace.org/ns/workType/textilepanel",
+
+        'Silver gelatin prints' => 'http://vocab.getty.edu/aat/300128695',
+        'Gelatin silver prints' => 'http://vocab.getty.edu/aat/300128695',
+        'Postcards' => 'http://vocab.getty.edu/aat/300026816',
+        'Color Slide' => 'http://vocab.getty.edu/aat/300128366',
+        'Posters' => 'http://vocab.getty.edu/aat/300027221',
+        'Halftone print' => 'http://vocab.getty.edu/aat/300154372',
+        'Signs (Notices)' => 'http://vocab.getty.edu/aat/300213259',
+        'Magazine covers' => 'http://vocab.getty.edu/aat/300215389',
+        'Maps' => 'http://vocab.getty.edu/aat/300028094',
+        'Emblems' => 'http://vocab.getty.edu/aat/300123036',
+        'Ephemera' => 'http://vocab.getty.edu/aat/300028881',
+        'Tickets' => 'http://vocab.getty.edu/aat/300027381',
+        'Periodicals' => 'http://vocab.getty.edu/aat/300026657',
+        'Envelopes' => 'http://vocab.getty.edu/aat/300197601',
+        'Stereographs' => 'http://vocab.getty.edu/aat/300127197',
+        'Photographic prints' => 'http://vocab.getty.edu/aat/300127104',
       }
-    end 
-
+    end
   end
-
-  # Workaround for frequent net connection errors with Getty sparql endpoint.
-  def cached_types
-    {
-      'Silver gelatin prints' => '300128695',
-      'Gelatin silver prints' => '300128695',
-      'Postcards' => '300026816',
-      'Color Slide' => '300128366',
-      'Posters' => '300027221',
-      'Halftone print' => '300154372',
-      'Signs (Notices)' => '300213259',
-      'Magazine covers' => '300215389',
-      'Maps' => '300028094',
-      'Emblems' => '300123036',
-      'Ephemera' => '300028881',
-      'Tickets' => '300027381',
-      'Periodicals' => '300026657',
-      'Envelopes' => '300197601',
-      'Stereographs' => '300127197',
-      'Photographic prints' => '300127104',
-    }
-  end
-
-
 end
