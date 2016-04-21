@@ -21,3 +21,4 @@ namespaces:
   biol: "http://ontologi.es/biol/botany#"
   schema: "http://schema.org/"
   swpo: "http://sw-portal.deri.org/ontologies/swportal#"
+  cdwa: "http://opaquenamespace.org/ns/cdwa/"
