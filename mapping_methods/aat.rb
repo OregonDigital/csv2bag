@@ -33,8 +33,6 @@ module MappingMethods
         puts str, e.message, e.backtrace
       end
 
-      @log.debug("AAT Result URI: " + uri.to_s)
-
       if !uri.to_s.empty?
         @log.info("AAT Result found for " + str + ": " + uri.to_s)
         aat_cache[str] = {:uri => RDF::URI(uri), :label => str}
@@ -50,7 +48,8 @@ module MappingMethods
       uri
     end
 
-    def aat_from_search(subject, data)
+    # Main AAT method. Defaults to predicate for Worktype
+    def aat(subject, data, predicate=RDF.type)
       graph = RDF::Graph.new
       data = data.split(";")
       Array(data).each do |type|
@@ -64,13 +63,18 @@ module MappingMethods
 
         if uri.kind_of? RDF::URI
           @log.info("AAT Result URI for #{type}: #{uri.to_s}")
-          graph << RDF::Statement.new(subject, RDF.type, uri)
+          graph << RDF::Statement.new(subject, predicate, uri)
         else
           @log.warn("No AAT URI for #{type}")
         end
       end
 
       graph
+    end
+
+    # Use AAT method with Subject predicate
+    def aat_subject(subject, data)
+      aat(subject, data, RDF::DC.subject)
     end
 
     # To avoid possible search lookup failures, can specify matched URIs here
@@ -94,6 +98,11 @@ module MappingMethods
         "Slip" => "http://vocab.getty.edu/aat/300210564",   # slips (underwear)
         "T-strap Shoe" => "http://opaquenamespace.org/ns/workType/tstrapshoes",
         "Textile Panel" => "http://opaquenamespace.org/ns/workType/textilepanel",
+        "Undergarment" => "http://vocab.getty.edu/aat/300209267",   # underwear
+        "Hat" => "http://vocab.getty.edu/aat/300046106",   # hats
+        "Textile or Textile fragment" => "http://vocab.getty.edu/aat/300014063",   # textiles (visual works)
+        "Main Garment" => "http://vocab.getty.edu/aat/300209263",   # main garments
+        "Loungewear" => "http://vocab.getty.edu/aat/300403908",   # loungewear
 
         'Silver gelatin prints' => 'http://vocab.getty.edu/aat/300128695',
         'Gelatin silver prints' => 'http://vocab.getty.edu/aat/300128695',
