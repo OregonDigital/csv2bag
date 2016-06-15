@@ -43,7 +43,7 @@ def create_graphs(file, collection)
   mapping = csv_data[1]
   items = csv_data.slice(2, csv_data.count)
 
-  items.each do |record|
+  items.each_with_index do |record, record_idx|
     # record is an individual line from the csv file
     graph = RDF::Graph.new
     bnode = RDF::Node.new
@@ -70,6 +70,9 @@ def create_graphs(file, collection)
         puts "NoMethodError" + " " + e.message
       end
     end
+
+    # May have been set already by Replaces method
+    record_id ||= record_idx + 1
 
     add_set(collection, graph, bnode)
     send("#{collection}_cleanup", collection, graph, bnode) if respond_to?("#{collection}_cleanup")
@@ -98,6 +101,7 @@ def map_set
       'herbarium' => 'herbarium',
       'streamsurve' => 'streamsurvey',
       'mewaters' => 'middle-east-water',
+      'clothing' => 'textile-and-apparel',
   }
 end
 
@@ -198,8 +202,8 @@ def make_coll_bags(dir, target, collection, *args)
   graphs = create_graphs(file, coll_name)
 
   if @missing_fields.empty? or @opts['--skip']
-    puts 'making bags'
-    graphs.each do |graph|
+    puts "Making #{graphs.count} Bags"
+    graphs.each_with_index do |graph, graph_idx|
       subject = ''
       graph.each_statement do |s|
         if s.subject.to_s.start_with? 'http://example.org/ns/'
@@ -208,6 +212,8 @@ def make_coll_bags(dir, target, collection, *args)
         end
       end
       make_bag(col_dir, graph, subject, File.join(dir, collection))
+
+      if (graph_idx + 1) % 50 == 0 then puts (graph_idx + 1) end
     end
   else
     puts "Missing fields, not writing bags for #{collection}. Add fields to mapping.yml, or use --skip flag."
