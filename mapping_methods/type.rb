@@ -3,7 +3,6 @@ require 'rdf/raptor'
 
 module MappingMethods
   module Types
-    DCMITYPE_NS = RDF::Vocabulary.new('http://purl.org/dc/dcmitype/')
     DCMITYPES = [:Collection, :Dataset, :Event,
                  :Image, :InteractiveReource, :MovingImage,
                  :PhysicalObject, :Service, :Software,
@@ -17,7 +16,7 @@ module MappingMethods
     def dcmitype(subject, data)
       data = data.capitalize.to_sym
       return nil unless DCMITYPES.include? data
-      return RDF::Graph.new << RDF::Statement.new(subject, RDF::Vocab::DC.type, DCMITYPE_NS[data])
+      return RDF::Graph.new << RDF::Statement.new(subject, RDF::Vocab::DC.type, RDF::Vocab::DCMIType[data])
     end
 
     def types(subject, data)
@@ -26,14 +25,14 @@ module MappingMethods
       data.split(';').each do |part|
         part.strip!
         type = dcmitype(subject, part)
-        type ||= RDF::Statement.new(subject, DC_ELEM[:type], RDF::Literal.new(part))
+        type ||= RDF::Statement.new(subject, RDF::Vocab::DC.type, RDF::Literal.new(part))
         graph << type
       end
       graph
     end
 
     def image_type(subject, data)
-      RDF::Graph.new << RDF::Statement.new(subject, RDF::Vocab::DC.type, DCMITYPE_NS[:Image])
+      RDF::Graph.new << RDF::Statement.new(subject, RDF::Vocab::DC.type, RDF::Vocab::DCMIType[:Image])
     end
 
 
