@@ -102,6 +102,7 @@ def map_set
       'streamsurve' => 'streamsurvey',
       'mewaters' => 'middle-east-water',
       'clothing' => 'textile-and-apparel',
+      'clothing_2' => 'textile-and-apparel'
   }
 end
 

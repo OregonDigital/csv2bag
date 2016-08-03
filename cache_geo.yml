@@ -179,6 +179,7 @@ France:
 China:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/1814991/
+    hash: -3051813880702609679
   :label: China
 Philippines:
   :uri: !ruby/object:RDF::URI
@@ -191,6 +192,7 @@ Thailand:
 Austria:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/2782113/
+    hash: 3543447023806228
   :label: Austria
 Tunisia:
   :uri: !ruby/object:RDF::URI
@@ -287,3 +289,38 @@ Kyrgyzstan:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/1527747/
   :label: Kyrgyzstan
+Europe:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/6255148/
+  :label: Europe
+Italy:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3175395/
+    hash: -3049491113317889907
+  :label: Italy
+South Korea:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1835841/
+    hash: 648121118545953239
+  :label: South Korea
+Hong Kong:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1819729/
+    hash: 27822082274911417
+  :label: Hong Kong
+Canada:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/6251999/
+  :label: Canada
+Bethlehem, Palestine:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/284315/
+  :label: Bethlehem
+London, Great Britain:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2643743/
+  :label: London
+Singapore:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1880252/
+  :label: Singapore
