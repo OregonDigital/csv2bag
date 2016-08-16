@@ -117,5 +117,9 @@ module MappingMethods
       creator(subject, data, RDF::Vocab::MARCRelators.trl)
     end
 
+    # Use creator method with photographer predicate
+    def photographer(subject, data)
+      creator(subject, data, RDF::Vocab::MARCRelators.pht)
+    end
   end
 end
