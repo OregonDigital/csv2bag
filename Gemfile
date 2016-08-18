@@ -13,3 +13,5 @@ gem 'qa', '~>0.3.0', :require => false
 
 # Support for multiple and better logging
 gem 'logging'
+
+gem 'rspec', '~>3.0'

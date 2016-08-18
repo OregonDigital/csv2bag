@@ -48,6 +48,7 @@ GEM
     builder (3.2.2)
     deprecation (0.2.2)
       activesupport
+    diff-lcs (1.2.5)
     docopt (0.5.0)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
@@ -201,6 +202,19 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+    rspec-core (3.2.3)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
     sparql (1.99.0)
       builder (~> 3.2)
       ebnf (~> 1.0)
@@ -244,6 +258,7 @@ DEPENDENCIES
   rdf-raptor
   rdf-vocab
   rest-client
+  rspec (~> 3.0)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
