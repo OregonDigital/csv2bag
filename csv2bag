@@ -7,7 +7,6 @@ require 'logger'
 require 'logging'
 require 'docopt'
 require './mapping_methods.rb'
-require_relative 'lib/desc_parser'
 require 'csv'
 require 'rdf/vocab'
 
