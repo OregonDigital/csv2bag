@@ -3,7 +3,7 @@ require 'rdf'
 module MappingMethods
   module Cleanup
 
-    def clothing_2_cleanup(collection, graph, subject)
+    def lanternslides_cleanup(collection, graph, subject)
 
       # Add the repository field for this collection.
 #      graph << RDF::Statement.new(subject, RDF::URI.new(@namespaces['marcrel']['rps']), RDF::URI.new('http://id.loc.gov/authorities/names/n00020491'))

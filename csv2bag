@@ -7,7 +7,7 @@ require 'logger'
 require 'logging'
 require 'docopt'
 require './mapping_methods.rb'
-require_relative 'lib/desc_parser'
+require_relative 'lib/field_methods'
 require 'csv'
 require 'rdf/vocab'
 
@@ -48,22 +48,51 @@ def create_graphs(file, collection)
     graph = RDF::Graph.new
     bnode = RDF::Node.new
     record_id = nil
+    # Iterate over columns that are mapped
     mapping.each_with_index do |tag, idx|
       begin
         item_val = record[idx]
+
+        # Send value to method for processing
         if tag.to_s.include? 'method' and not (item_val == nil or item_val == '')
           method_name = tag.to_s.split(':').last
           if 'REPLACE' == method_name.upcase
             record_id = item_val
             graph << RDF::Statement(bnode, RDF::Vocab::DC.replaces, RDF::URI("http://oregondigital.org/u?/#{collection},#{record_id}"))
           else
-            result = send(method_name.to_sym, bnode, item_val) unless @skip.include? item_val.downcase
-            graph << result unless result.nil?
+
+            # Handle possible multiple values, splitting on delimiters
+            FieldMethods.field_split(item_val).each do |val|
+              result = send(method_name.to_sym, bnode, val.strip) unless @skip_values.include? val.downcase
+              graph << result unless result.nil?
+            end
+
           end
         else
+          # Don't use methods, set values to specified predicate directly
           next if tag.to_s.upcase == 'SKIP' or (item_val == nil or item_val == '')
           ns, term = tag.to_s.split(':')
-          graph << RDF::Statement.new(bnode, @namespaces[ns][term], item_val) unless @skip.include? item_val.downcase
+
+          if tag == "dct:title2" or tag == "dct:description"
+
+            if item_val.start_with?("http")
+              graph << RDF::Statement.new(bnode, @namespaces[ns][term], RDF::URI(item_val.strip)) unless @skip_values.include? item_val.downcase
+            else
+              graph << RDF::Statement.new(bnode, @namespaces[ns][term], item_val.strip) unless @skip_values.include? item_val.downcase
+            end
+
+          else
+
+            # Handle possible multiple values, splitting on delimiters
+            FieldMethods.field_split(item_val).each do |val|
+
+              if val.start_with?("http")
+                graph << RDF::Statement.new(bnode, @namespaces[ns][term], RDF::URI(val.strip)) unless @skip_values.include? val.downcase
+              else
+                graph << RDF::Statement.new(bnode, @namespaces[ns][term], val.strip) unless @skip_values.include? val.downcase
+              end
+            end
+          end
         end
       rescue NoMethodError => e
         @missing_fields << tag unless @missing_fields.include? tag
@@ -85,6 +114,9 @@ def add_set(collection, graph, subject)
   set = map_set[collection.downcase]
   if set
     graph << RDF::Statement(subject, @namespaces["oregon"]["set"], RDF::URI("http://oregondigital.org/resource/oregondigital:#{set}"))
+
+    # Also add PrimarySet
+    graph << RDF::Statement(subject, @namespaces["oregon"]["primarySet"], RDF::URI("http://oregondigital.org/resource/oregondigital:#{set}"))
   end
 end
 
@@ -102,7 +134,8 @@ def map_set
       'streamsurve' => 'streamsurvey',
       'mewaters' => 'middle-east-water',
       'clothing' => 'textile-and-apparel',
-      'clothing_2' => 'textile-and-apparel'
+      'clothing_2' => 'textile-and-apparel',
+      'lanternslides' => 'osu-scarc',
   }
 end
 
@@ -326,7 +359,7 @@ begin
   @mappings['namespaces'].each do |ns, base_uri|
     @namespaces[ns] = RDF::Vocabulary.new(base_uri)
   end
-  @skip = ['unknown', 'n/a']
+  @skip_values = ['unknown', 'n/a']
 
   make_all_bags(@opts['DIR'], @opts['TARGET'] || 'bags')
 
