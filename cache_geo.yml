@@ -292,6 +292,7 @@ Kyrgyzstan:
 Europe:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/6255148/
+    hash: 3493355687121765314
   :label: Europe
 Italy:
   :uri: !ruby/object:RDF::URI
@@ -324,3 +325,7 @@ Singapore:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/1880252/
   :label: Singapore
+Brussels:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2800866/
+  :label: Brussels
