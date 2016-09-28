@@ -135,7 +135,9 @@ def map_set
       'mewaters' => 'middle-east-water',
       'clothing' => 'textile-and-apparel',
       'clothing_2' => 'textile-and-apparel',
+      'clothing_batch3' => 'textile-and-apparel',
       'lanternslides' => 'osu-scarc',
+      'lanternslides_set46' => 'osu-scarc'
   }
 end
 
@@ -234,9 +236,10 @@ def make_coll_bags(dir, target, collection, *args)
   coll_name = File.basename(collection, '.*')
   col_dir = FileUtils.mkdir_p(File.join(target, coll_name))
   graphs = create_graphs(file, coll_name)
+  bag_count = graphs.count
 
   if @missing_fields.empty? or @opts['--skip']
-    puts "Making #{graphs.count} Bags"
+    puts "Making #{bag_count} Bags"
     graphs.each_with_index do |graph, graph_idx|
       subject = ''
       graph.each_statement do |s|
@@ -247,11 +250,16 @@ def make_coll_bags(dir, target, collection, *args)
       end
       make_bag(col_dir, graph, subject, File.join(dir, collection))
 
-      if (graph_idx + 1) % 50 == 0 then puts (graph_idx + 1) end
+      # Print out current bag and percentage without newline
+      print "\r" + (graph_idx + 1).to_s + "\t" + "%.2f" % (((graph_idx + 1).to_f / bag_count.to_f) * 100) + "%"
+      $stdout.flush
     end
   else
     puts "Missing fields, not writing bags for #{collection}. Add fields to mapping.yml, or use --skip flag."
   end
+
+  puts
+
   # graphs.each { |gr| gr.each { |x| puts x.inspect } }
 end
 
