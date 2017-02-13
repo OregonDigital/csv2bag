@@ -21,15 +21,15 @@ module MappingMethods
         { :title => "Creative Commons - Attribution, Non-Commercial, No Derivatives (BY-NC-ND)",
           :uri => RDF::URI('http://creativecommons.org/licenses/by-nc-nd/4.0/') },
         { :title => "Educational Use Permitted",
-          :uri => RDF::URI('http://opaquenamespace.org/ns/rights/educational/') },
+          :uri => RDF::URI('http://opaquenamespace.org/ns/rights/educational') },
         { :title => "Rights Reserved - Free Access",
-          :uri => RDF::URI('http://www.europeana.eu/rights/rr-f/') },
+          :uri => RDF::URI('http://opaquenamespace.org/ns/rights/rr-f') },
         { :title => "Rights Reserved - Restricted Access",
-          :uri => RDF::URI('http://www.europeana.eu/rights/rr-r/') },
+          :uri => RDF::URI('http://opaquenamespace.org/ns/rights/rr-r') },
         { :title => "Orphan Works",
-          :uri => RDF::URI('http://opaquenamespace.org/ns/rights/orphan-work-us/') },
+          :uri => RDF::URI('http://opaquenamespace.org/ns/rights/orphan-work-us') },
         { :title => "Unknown",
-          :uri => RDF::URI('http://www.europeana.eu/rights/unknown/') }
+          :uri => RDF::URI('http://opaquenamespace.org/ns/rights/unknown') }
       ]
 
     def rights(subject, data)
