@@ -18,4 +18,5 @@ module MappingMethods
   include MappingMethods::Sports
   include MappingMethods::Cleanup
   include MappingMethods::Creator
+  include MappingMethods::Set
 end
