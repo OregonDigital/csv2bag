@@ -73,7 +73,8 @@ def create_graphs(file, collection)
           next if tag.to_s.upcase == 'SKIP' or (item_val == nil or item_val == '')
           ns, term = tag.to_s.split(':')
 
-          if tag == "dct:title2" or tag == "dct:description"
+          # Do not split values on delimiters
+          if tag == "dct:title" or tag == "dct:description" or tag == "dct:isPartOf"
 
             if item_val.start_with?("http")
               graph << RDF::Statement.new(bnode, @namespaces[ns][term], RDF::URI(item_val.strip)) unless @skip_values.include? item_val.downcase
@@ -115,6 +116,8 @@ def add_set(collection, graph, subject)
   if set
     graph << RDF::Statement(subject, @namespaces["oregon"]["set"], RDF::URI("http://oregondigital.org/resource/oregondigital:#{set}"))
 
+#    graph << RDF::Statement(subject, @namespaces["oregon"]["set"], RDF::URI("http://oregondigital.org/resource/oregondigital:osu-scarc"))
+
     # Also add PrimarySet
     graph << RDF::Statement(subject, @namespaces["oregon"]["primarySet"], RDF::URI("http://oregondigital.org/resource/oregondigital:#{set}"))
   end
@@ -137,7 +140,10 @@ def map_set
       'clothing_2' => 'textile-and-apparel',
       'clothing_batch3' => 'textile-and-apparel',
       'lanternslides' => 'osu-scarc',
-      'lanternslides_set46' => 'osu-scarc'
+      'lanternslides_set46' => 'osu-scarc',
+      'kengray' => 'ken-gray',
+      'clothing_4' => 'textile-and-apparel',
+      'clothing_5' => 'textile-and-apparel'
   }
 end
 
