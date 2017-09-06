@@ -329,3 +329,147 @@ Brussels:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/2800866/
   :label: Brussels
+Nassau, Bahamas:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3571824/
+  :label: Nassau
+West Germany:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2921044/
+  :label: Germany
+London, UK:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2643743/
+  :label: London
+Madrid, Spain:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3117735/
+  :label: Madrid
+Scotland:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2638360/
+  :label: Scotland
+Japan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1861060/
+  :label: Japan
+Switzerland:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2658434/
+  :label: Switzerland
+Venice, Italy:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3164603/
+  :label: Venice
+Persia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/130758/
+  :label: Iran
+Kashmir, India:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1269320/
+  :label: Jammu and Kashmir
+Nicaragua:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3617476/
+  :label: Nicaragua
+Greece:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/390903/
+  :label: Greece
+Damascus (Syria):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/170654/
+  :label: Damascus
+Luxemburg:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2960316/
+  :label: Luxembourg
+France or Belgium:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3035010/
+  :label: Barbirey-sur-Ouche
+Korea:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1835841/
+  :label: South Korea
+Florence, Italy:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3176959/
+  :label: Florence
+Guatemala:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3595528/
+  :label: Guatemala
+India (Jaipur):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1269515/
+  :label: Jaipur
+India (Banares):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1253405/
+  :label: Varanasi
+East Pakistan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1184845/
+  :label: Ahmadpur East
+Sri Lanka (Ceylon):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1227603/
+  :label: Sri Lanka
+India (Punjab):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1259224/
+  :label: Punjab
+India (Kashmir):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1269320/
+  :label: Jammu and Kashmir
+India (Gujarat):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1270770/
+  :label: Gujarat
+India (Surat):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1255364/
+  :label: Surat
+India (Kachhi):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/10843763/
+  :label: Kāchhi
+India (Dharwar):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1269920/
+  :label: Hubli
+East Pakistan (Bangladesh):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1210997/
+  :label: Bangladesh
+India (Southern Region):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/9972750/
+  :label: NCR
+India (Allahabad):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1278994/
+  :label: Allahabad
+India (Mumbai):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1275339/
+  :label: Mumbai
+India (Orissa):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1261029/
+  :label: Odisha
+India (Assam):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1278253/
+  :label: Assam
+Spain (Madrid):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3117735/
+  :label: Madrid
+Peru:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3932488/
+  :label: Peru
