@@ -145,7 +145,9 @@ def map_set
       'lanternslides_set46' => 'osu-scarc',
       'kengray' => 'ken-gray',
       'clothing_4' => 'textile-and-apparel',
-      'clothing_5' => 'textile-and-apparel'
+      'clothing_5' => 'textile-and-apparel',
+      'clothing_6' => 'textile-and-apparel',
+      'clothing_7' => 'textile-and-apparel'
   }
 end
 

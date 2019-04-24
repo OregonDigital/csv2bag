@@ -473,3 +473,316 @@ Peru:
   :uri: !ruby/object:RDF::URI
     value: http://sws.geonames.org/3932488/
   :label: Peru
+France (Lyon):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2996944/
+  :label: Lyon
+Flanders:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3337388/
+  :label: Flanders
+Madeira:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2593105/
+  :label: Madeira
+Spain (Sevilla):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2510911/
+  :label: Seville
+Italy (Florence):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3176959/
+  :label: Florence
+Italy (Perugia):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3171180/
+  :label: Perugia
+Italy (Rome):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3169070/
+  :label: Rome
+Italy (Venice):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3164603/
+  :label: Venice
+Italy (Pisa):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3170647/
+  :label: Pisa
+Germany (Dresden):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2935022/
+  :label: Dresden
+Prague:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3067696/
+  :label: Prague
+Denmark:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2623032/
+  :label: Denmark
+Sweden:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2661886/
+  :label: Sweden
+Scandinavia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2614165/
+  :label: Scandinavia
+Oslo:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3143244/
+  :label: Oslo
+Norway:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3144096/
+  :label: Norway
+Finland:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/660013/
+  :label: Finland
+Czechoslovakia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/8505031/
+  :label: Czechoslovakia
+Hungary (Budapest):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/3054643/
+  :label: Budapest
+Kosovo:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/831053/
+  :label: Kosovo
+Bulgaria:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/732800/
+  :label: Bulgaria
+Yugoslavia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7500737/
+  :label: Yugoslavia
+Romania:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/798549/
+  :label: Romania
+Switzerland (Appenzell):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2661740/
+  :label: Appenzell
+West Africa:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7729885/
+  :label: Western Africa
+Liberia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2275384/
+  :label: Liberia
+Kenya (Nairobi):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/184745/
+  :label: Nairobi
+Africa:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/6255146/
+  :label: Africa
+Uganda:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/226074/
+  :label: Uganda
+South Ghana (Akan):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2305207/
+  :label: Akan Lowlands
+Ghana:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2300660/
+  :label: Ghana
+Senegal:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2245662/
+  :label: Senegal
+Albania:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/783754/
+  :label: Albania
+Greece (Athens):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/264371/
+  :label: Athens
+Northern Macedonia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/5161539/
+  :label: Macedonia
+Greece (Attica):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/6692632/
+  :label: Attica
+Greece (Corinth):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/259289/
+  :label: Corinth
+Delphi:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/263219/
+  :label: Delphi
+Macedonia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/718075/
+  :label: Macedonia
+Greece (Delphi):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/263219/
+  :label: Delphi
+Republic of Cyprus:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/146669/
+  :label: Cyprus
+Crete (Island of Crete):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/5932333/
+  :label: Crete Island
+Republic of Malta:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2562770/
+  :label: Malta
+Rhodes (Island of Rhodes):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1691732/
+  :label: Rhodes Island
+Sardinia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2523227/
+  :label: Sardinia
+Kos (Island of Kos):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/259244/
+  :label: Kos Island
+Kastellorizo:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/257079/
+  :label: Kastellorizo
+Mykonos:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/257055/
+  :label: Mykonos
+Hawaii:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/5855797/
+  :label: Hawaii
+New Zealand:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2186224/
+  :label: New Zealand
+Samoa:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/4034894/
+  :label: Samoa
+Java, Indonesia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1642673/
+  :label: Java
+Fiji:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2205218/
+    hash: 794162982731990644
+  :label: Fiji
+Bali, Indonesia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1650535/
+  :label: Bali
+Siam:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1605651/
+  :label: Thailand
+Persia (Iran):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/130758/
+  :label: Iran
+Central Asia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7729893/
+  :label: Central Asia
+Serab, Iran:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/117371/
+  :label: Sarāb
+Hamadan, Iran:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/132143/
+  :label: Hamadān
+Kurdistan, Iran:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/126585/
+  :label: Kurdistan
+Kermanshah, Iran:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/128226/
+  :label: Kermanshah
+Lahore, Pakistan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1172451/
+  :label: Lahore
+Indonesia (Bali):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/1650535/
+  :label: Bali
+Greece (Markopoulo):
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/257671/
+  :label: Markopoulo Mesogaias
+Near East:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2645429/
+  :label: Kingston near Lewes
+Anatolia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/323835/
+    hash: -3562777508367667485
+  :label: Anatolia
+Azerbaijan:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/587116/
+    hash: -2879250435016302594
+  :label: Azerbaijan
+Caucasus:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/615318/
+    hash: 3372124768837502577
+  :label: Caucasus Region
+Armenia:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/174982/
+    hash: 4403805134171829360
+  :label: Armenia
+Middle East:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/6269133/
+  :label: Middle East
+Jerusalem, Israel:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7498240/
+  :label: West Jerusalem
+Izmir, Turkey:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/311046/
+  :label: Izmir
+New York, United States:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/5128581/
+  :label: New York
+North America:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7729890/
+  :label: Northern America
+Cairo, Egypt:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/360630/
+  :label: Cairo
+London, United Kingdom:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/2643743/
+  :label: London
+Western Africa:
+  :uri: !ruby/object:RDF::URI
+    value: http://sws.geonames.org/7729885/
+  :label: Western Africa
