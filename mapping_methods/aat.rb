@@ -114,10 +114,13 @@ module MappingMethods
         "Cloche" => "http://vocab.getty.edu/aat/300210733",  # cloches (hats)
         "Clutch" => "http://vocab.getty.edu/aat/300256798",  # clutch bags
         "Coat" => "http://vocab.getty.edu/aat/300046143",  # coats (garments)
+        "Combination" => "http://vocab.getty.edu/aat/300210544", # combinations
         "Crinoline" => "http://vocab.getty.edu/aat/300210554",  # crinolines
+        "Cultural Wear" => "http://vocab.getty.edu/aat/300380192", # folk costume
         "Curtains" => "http://vocab.getty.edu/aat/300037564",  # curtains (window hangings)
         "Cushion" => "http://vocab.getty.edu/aat/300236073",  # cushions
         "Detachable Collar" => "http://vocab.getty.edu/aat/300210058",  # collars (neckwear)
+        "Detachable Cuffs" => "http://vocab.getty.edu/aat/300210488", # cuffs (costume components)
         "Detachable Skirt" => "http://vocab.getty.edu/aat/300209932",  # skirts (garments)
         "Dickey" => "http://vocab.getty.edu/aat/300210060",
         "Drawers" => "http://vocab.getty.edu/aat/300210555",   # drawers (underpants)
@@ -138,6 +141,7 @@ module MappingMethods
         "Hair Comb" => "http://vocab.getty.edu/aat/300046265",  # combs (hair ornaments)
         "Hair Net" => "http://vocab.getty.edu/aat/300210861",  # hairnets
         "Halter Top" => "http://vocab.getty.edu/aat/300209885",  # halters (main garments)
+        "Hanbok" => "http://vocab.getty.edu/aat/300410462", # hanbok
         "Hand Muff" => "http://vocab.getty.edu/aat/300210014",  # muffs
         "Handkerchief" => "http://vocab.getty.edu/aat/300216195",  # handkerchiefs
         "Hat" => "http://vocab.getty.edu/aat/300046106",   # hats
@@ -148,6 +152,7 @@ module MappingMethods
         "Jacket" => "http://vocab.getty.edu/aat/300046167",  # jackets (garments)
         "Jewelry" => "http://vocab.getty.edu/aat/300209286",
         "Jumper" => "http://vocab.getty.edu/aat/300046164",  # jumpers (dresses)
+        "Kimono" => "http://vocab.getty.edu/aat/300046171", # kimonos
         "Lace" => "http://vocab.getty.edu/aat/300231662",  # needle lace
         "Loungewear" => "http://vocab.getty.edu/aat/300403908",   # loungewear
         "Main Garment" => "http://vocab.getty.edu/aat/300209263",   # main garments
@@ -175,6 +180,7 @@ module MappingMethods
         "Purse" => "http://vocab.getty.edu/aat/300046219",  # purses (ladies' accessories)
         "Reticule" => "http://vocab.getty.edu/aat/300216942",  # reticules
         "Robe" => "http://vocab.getty.edu/aat/300209852",  # robes (main garments)
+        "Roundel" => "http://vocab.getty.edu/aat/300204971", # tea cloths
         "Rug" => "http://vocab.getty.edu/aat/300185749",  # rugs (textiles)
         "Saddle Bag" => "http://vocab.getty.edu/aat/300237746",  # saddlebags (containers)
         "Sandals" => "http://vocab.getty.edu/aat/300046077",  # sandals
@@ -206,6 +212,7 @@ module MappingMethods
         "Tea Cloth" => "http://vocab.getty.edu/aat/300204971",   # tea cloths
         "Textile or Textile fragment" => "http://vocab.getty.edu/aat/300014063",   # textiles (visual works)
         "Textile Panel" => "http://opaquenamespace.org/ns/workType/textilepanel",
+        "Textile Swatches" => "http://vocab.getty.edu/aat/300249430", # swatches
         "Tie" => "http://vocab.getty.edu/aat/300210068",  # neckties
         "Tool" => "http://vocab.getty.edu/aat/300024841", 
         "Toque" => "http://vocab.getty.edu/aat/300210812",  # toques (caps)
