@@ -58,7 +58,7 @@ GEM
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
-    ffi (1.9.10)
+    ffi (1.11.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
