@@ -82,6 +82,7 @@ module MappingMethods
     def matched_uris
       {
         "Accessory - Other" => "http://vocab.getty.edu/aat/300251645",   # accessories (object genre)
+        "Applique" => "http://vocab.getty.edu/aat/300264062", # appliqué (textile visual works)
         "Apron" => "http://vocab.getty.edu/aat/300046131",  # aprons (protective wear)
         "Ascot" => "http://vocab.getty.edu/aat/300210052",  
         "Barrette" => "http://vocab.getty.edu/aat/300209295",  # barrettes (hair ornaments)
@@ -91,6 +92,7 @@ module MappingMethods
         "Bedspread" => "http://vocab.getty.edu/aat/300197889",  # bedspreads
         "Belt" => "http://vocab.getty.edu/aat/300210002",  # belts (costume accessories)
         "Belt Buckle" => "http://vocab.getty.edu/aat/300375281",  
+        "Blanket" => "http://vocab.getty.edu/aat/300197367", # blankets (coverings)
         "Blouse" => "http://vocab.getty.edu/aat/300046133",   # blouses (main garments)
         "Boa" => "http://vocab.getty.edu/aat/300215870",  # boas (neckpieces)
         "Bodice" => "http://vocab.getty.edu/aat/300209874",  # bodices
@@ -99,6 +101,7 @@ module MappingMethods
         "Bow" => "http://vocab.getty.edu/aat/300210057",  # bow ties
         "Bra" => "http://vocab.getty.edu/aat/300210538",  # brassieres
         "Brocade" => "http://vocab.getty.edu/aat/300227779",  # brocade (textile)
+        "Burka" => "http://vocab.getty.edu/aat/300209817", # burkas
         "Bustle" => "http://vocab.getty.edu/aat/300210580",  # bustles
         "Calotte" => "http://vocab.getty.edu/aat/300046125",   # skullcaps (caps) [calottes (headgear) is alternate]
         "Caftan" => "http://vocab.getty.edu/aat/300046139",  # caftans
@@ -135,6 +138,7 @@ module MappingMethods
         "Fabric Sample" => "http://vocab.getty.edu/aat/300249430",   # swatches
         "Fan" => "http://vocab.getty.edu/aat/300258857",  # fans (costume accessories)
         "Feather(s)" => "http://vocab.getty.edu/aat/300011809",  # feather (material)
+        "Garment Bag" => "http://vocab.getty.edu/aat/300198925", # garment bags
         "Girdle" => "http://vocab.getty.edu/aat/300210585",  # girdles (underwear)
         "Gloves" => "http://vocab.getty.edu/aat/300148821",  # gloves
         "Handbag" => "http://vocab.getty.edu/aat/300312361",  # handbags
@@ -154,6 +158,7 @@ module MappingMethods
         "Jumper" => "http://vocab.getty.edu/aat/300046164",  # jumpers (dresses)
         "Kimono" => "http://vocab.getty.edu/aat/300046171", # kimonos
         "Lace" => "http://vocab.getty.edu/aat/300231662",  # needle lace
+        "Loin Cloth" => "http://vocab.getty.edu/aat/300209923", # loincloths
         "Loungewear" => "http://vocab.getty.edu/aat/300403908",   # loungewear
         "Main Garment" => "http://vocab.getty.edu/aat/300209263",   # main garments
         "Mary Janes" => "http://opaquenamespace.org/ns/workType/maryjanes",
@@ -163,8 +168,9 @@ module MappingMethods
         "Needle Book" => "http://vocab.getty.edu/aat/300023451",  # needle cases
         "Night Shirt" => "http://vocab.getty.edu/aat/300209952",   # nightshirts
         "Nightgown" => "http://vocab.getty.edu/aat/300046175",  # nightgowns
-        "Outerwear" => "http://vocab.getty.edu/aat/300209265",   # outerwear 
+        "Obi" => "http://vocab.getty.edu/aat/300216871", # obis
         "Other" => "http://vocab.getty.edu/aat/300400513",  # other (information indicator)
+        "Outerwear" => "http://vocab.getty.edu/aat/300209265",   # outerwear 
         "Pamphlet" => "http://vocab.getty.edu/aat/300220572",
         "Panties" => "http://vocab.getty.edu/aat/300210563",  # panties (underpants)
         "Pants" => "http://vocab.getty.edu/aat/300209935",  # trousers
@@ -187,6 +193,7 @@ module MappingMethods
         "Sari" => "http://vocab.getty.edu/aat/300209858",  # saris (garments)
         "Sarong" => "http://vocab.getty.edu/aat/300209928",
         "Sash" => "http://vocab.getty.edu/aat/300216864",  # sashes (costume accessories)
+        "Satchel" => "http://vocab.getty.edu/aat/300431423", # satchel
         "Scarf" => "http://vocab.getty.edu/aat/300046123",  # scarves (costume accessories)
         "Sewing Kit" => "http://vocab.getty.edu/aat/300247545",  # sewing tools and equipment
         "Shawl" => "http://vocab.getty.edu/aat/300209991",   # shawls
@@ -224,6 +231,7 @@ module MappingMethods
         "Veil" => "http://vocab.getty.edu/aat/300046128",  # veils (headcloths)
         "Vest" => "http://vocab.getty.edu/aat/300209904",  # vests (garments)
         "Wall Hanging" => "http://vocab.getty.edu/aat/300204886",  # wall hangings
+        "Wallet" => "http://vocab.getty.edu/aat/300046230", # wallets
         "Wedding Dress" => "http://vocab.getty.edu/aat/300255177",  # wedding dresses
         "Wrap" => "http://vocab.getty.edu/aat/300220742",  # dolmans (mantles)
 
