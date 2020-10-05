@@ -116,7 +116,7 @@ GEM
       nokogiri (~> 1.6.0)
       rails (>= 3.2.13, < 5.0)
       rest-client
-    rack (1.6.4)
+    rack (1.6.12)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
