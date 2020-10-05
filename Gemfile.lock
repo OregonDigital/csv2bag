@@ -46,6 +46,7 @@ GEM
     bcp47 (0.3.3)
       i18n
     builder (3.2.2)
+    crass (1.0.5)
     deprecation (0.2.2)
       activesupport
     diff-lcs (1.2.5)
@@ -98,7 +99,8 @@ GEM
     logging (2.0.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.0.3)
+    loofah (2.3.1)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
