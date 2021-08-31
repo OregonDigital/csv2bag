@@ -8,7 +8,7 @@ module MappingMethods
 
     def mapping
       {
-        "Oregon State University Libraries" => "http://dbpedia.org/resource/Oregon_State_University"
+        "Oregon State University Libraries" => "http://id.loc.gov/authorities/names/n80017721"
       }
     end
   end
